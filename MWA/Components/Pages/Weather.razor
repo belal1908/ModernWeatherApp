@@ -12,6 +12,8 @@
             <button><img src="images/search.png"></button>
         </div>
 
+        <button class="auto-location">Auto Location</button>
+
         <div class="error">
             <p>Invalid City Name!</p>
         </div>
@@ -130,6 +132,7 @@
     const weatherCard = document.querySelector(".card");
     const forecastContainer = document.querySelector(".forecast-container");
     const forecastSection = document.querySelector(".forecast");
+    const autoLocationBtn = document.querySelector(".auto-location");
 
     async function fetchWeather(city) {
         try {
@@ -218,7 +221,11 @@
                 } catch (error) {
                     console.error("Error fetching user location weather:", error);
                 }
+            }, (error) => {
+                alert("Location access denied. Please enter a city manually.");
             });
+        } else {
+            alert("Geolocation is not supported by your browser.");
         }
     }
 
@@ -235,6 +242,10 @@
         }
     });
 
+    autoLocationBtn.addEventListener("click", () => {
+        getUserLocation();
+    });
+
     document.querySelectorAll(".city-btn").forEach(button => {
         button.addEventListener("click", () => fetchWeather(button.dataset.city));
     });
@@ -244,7 +255,7 @@
             resetApp();
         }
     });
-    getUserLocation();
+    @* getUserLocation(); *@
 
 </script>
 
