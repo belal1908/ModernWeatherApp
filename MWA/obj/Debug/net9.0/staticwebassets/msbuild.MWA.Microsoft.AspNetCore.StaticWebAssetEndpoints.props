@@ -516,17 +516,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"s35ty4nyc5"},{"Name":"integrity","Value":"sha256-GKEF18s44B5e0MolXAkpkqLiEbOVlKf6VyYr/G/E6pw="},{"Name":"label","Value":"_content/MWA/lib/bootstrap/dist/css/bootstrap.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"281046"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022GKEF18s44B5e0MolXAkpkqLiEbOVlKf6VyYr/G/E6pw=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 08:58:55 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/weather.0v5fkyolr1.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\weather.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"0v5fkyolr1"},{"Name":"integrity","Value":"sha256-lBhXvu5VpOnsC4HSLpRQx81\u002B2SS1TUtRoBx15rXsaGY="},{"Name":"label","Value":"_content/MWA/lib/bootstrap/dist/css/weather.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"222"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022lBhXvu5VpOnsC4HSLpRQx81\u002B2SS1TUtRoBx15rXsaGY=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 15:17:43 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/weather.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\weather.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-lBhXvu5VpOnsC4HSLpRQx81\u002B2SS1TUtRoBx15rXsaGY="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"222"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022lBhXvu5VpOnsC4HSLpRQx81\u002B2SS1TUtRoBx15rXsaGY=\u0022"},{"Name":"Last-Modified","Value":"Wed, 26 Feb 2025 15:17:43 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-O6LHorSKUTlGiPLoh4/rmB0fjkK7AMoP9UVUoUeGC7g="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2288"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022O6LHorSKUTlGiPLoh4/rmB0fjkK7AMoP9UVUoUeGC7g=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Feb 2025 16:06:22 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/weather.vjz5v8c4yx.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\weather.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vjz5v8c4yx"},{"Name":"integrity","Value":"sha256-O6LHorSKUTlGiPLoh4/rmB0fjkK7AMoP9UVUoUeGC7g="},{"Name":"label","Value":"_content/MWA/lib/bootstrap/dist/css/weather.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2288"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022O6LHorSKUTlGiPLoh4/rmB0fjkK7AMoP9UVUoUeGC7g=\u0022"},{"Name":"Last-Modified","Value":"Thu, 27 Feb 2025 16:06:22 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/js/bootstrap.bundle.6cfz1n2cew.js">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\js\bootstrap.bundle.js'))</AssetFile>

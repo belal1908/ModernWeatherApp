@@ -786,8 +786,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>0v5fkyolr1</Fingerprint>
-      <Integrity>lBhXvu5VpOnsC4HSLpRQx81+2SS1TUtRoBx15rXsaGY=</Integrity>
+      <Fingerprint>vjz5v8c4yx</Fingerprint>
+      <Integrity>O6LHorSKUTlGiPLoh4/rmB0fjkK7AMoP9UVUoUeGC7g=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\weather.css'))</OriginalItemSpec>

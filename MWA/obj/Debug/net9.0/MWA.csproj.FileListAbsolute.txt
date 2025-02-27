@@ -77,4 +77,5 @@
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/MWA.pdb
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/MWA.genruntimeconfig.cache
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/ref/MWA.dll
-/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/n4xb6rs69c-0v5fkyolr1.gz
+/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/MWA.sourcelink.json
+/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/n4xb6rs69c-vjz5v8c4yx.gz
