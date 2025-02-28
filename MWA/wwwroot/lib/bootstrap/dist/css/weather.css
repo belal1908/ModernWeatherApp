@@ -199,11 +199,6 @@
         justify-content: center;
     }
     
-    .auto-location {
-        display: flex;
-        align-items: center;
-    }
-    
     .search button img {
         width: 25px;
     }
