@@ -3,16 +3,27 @@
 
 <PageTitle >Weather</PageTitle>
 
-<h1 style="text-align: center;">Weather</h1>
+<body 
+    class="weather-page"> 
+</body>
 
+<button class="mode-toggle" onclick="toggleMode()">
+    <img src="images/contrast.png">
+</button>
 
  <div class="card">
         <div class="search">
             <input type="text" placeholder="Enter City Name" spellcheck="false">
-            <button><img src="images/search.png"></button>
+            <button>
+                <img src="images/search.png">
+            </button>
+
             <div class="auto-location">
-            <button><img src="images/gps.png"></button>
-        </div>
+
+            <button>
+                <img src="images/gps.png">
+            </button>
+            </div>
         </div>
 
         
@@ -43,68 +54,6 @@
                 </div>
             </div>
         </div>
-   @* </div>
-
-<script>
-
-    const apiKey = "d8cab8bea5e32d2b21acf2fb9419eebf";
-    const apiUrl = "https:// api.openweathermap.org/data/2.5/weather?units=metric&q=";
-    const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
-    const searchBox = document.querySelector(".search input");
-    const searchButton = document.querySelector(".search button");
-    const weatherIcon = document.querySelector(".weather-icon");
-    const weatherCard = document.querySelector(".card");
-    const forecastContainer = document.querySelector(".forecast-container");
-
-    async function checkWeather(city) {
-        const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-        if(response.status == 404){
-            document.querySelector(".error").style.display = "block";
-            document.querySelector(".weather").style.display = "none";
-        }
-        else{
-            var data = await response.json();
-
-        document.querySelector(".city").innerHTML = data.name;
-        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) +"°c";
-        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-        document.querySelector(".wind").innerHTML = data.wind.speed + " km/h";
-
-        if (data.weather[0].main == "Clouds"){
-            weatherIcon.src = "images/clouds.png";
-        }
-        else if(data.weather[0].main == "Clear"){
-            weatherIcon.src = "images/clear.png";
-        }
-        else if(data.weather[0].main == "Rain"){
-            weatherIcon.src = "images/rain.png";
-        }
-        else if(data.weather[0].main == "Drizzle"){
-            weatherIcon.src = "images/drizzle.png";
-        }
-        else if(data.weather[0].main == "Mist"){
-            weatherIcon.src = "images/mist.png";
-        }    
-
-        document.querySelector(".error").style.display = "none";
-        document.querySelector(".weather").style.display = "block";
-
-        }     
-    }
-
-    searchButton.addEventListener("click", ()=>{
-        checkWeather(searchBox.value);
-    });
-
-    document.addEventListener("click", (event)=>{
-        if(!weatherCard.contains(event.target)){
-            searchBox.value = "";
-            document.querySelector(".error").style.display = "none";
-            document.querySelector(".weather").style.display = "none";
-        }   
-    });
-
-    </script> *@
 
 
        <div class="forecast" style="display: none;">
@@ -188,7 +137,7 @@
         const dailyForecast = {};
 
         data.list.forEach(item => {
-            const date = item.dt_txt.split(" ")[0]; // Extracting the date
+            const date = item.dt_txt.split(" ")[0];
             if (!dailyForecast[date]) {
                 dailyForecast[date] = item;
             }
@@ -258,7 +207,15 @@
             resetApp();
         }
     });
-    @* getUserLocation(); *@
+
+    function toggleMode() {
+    document.querySelector(".weather-page").classList.toggle("dark-mode");
+
+    let modeButton = document.querySelector(".mode-toggle");
+    modeButton.innerHTML = `<img src="images/contrast.png" alt="Theme Toggle" width="24px">`;
+}
+
+
 
 </script>
 
@@ -318,3 +275,5 @@ else
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
     }
 } *@
+
+    

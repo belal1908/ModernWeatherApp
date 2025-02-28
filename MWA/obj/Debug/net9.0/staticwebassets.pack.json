@@ -21,8 +21,16 @@
       "PackagePath": "staticwebassets/images/clouds.png"
     },
     {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/contrast.png",
+      "PackagePath": "staticwebassets/images/contrast.png"
+    },
+    {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/drizzle.png",
       "PackagePath": "staticwebassets/images/drizzle.png"
+    },
+    {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/gps.png",
+      "PackagePath": "staticwebassets/images/gps.png"
     },
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/humidity.png",
