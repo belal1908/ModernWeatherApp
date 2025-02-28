@@ -155,7 +155,7 @@
     } */
 
     .card {
-        width: 95%; /* Increased width */
+        width: 100%; /* Increased width */
         max-width: 600px; /* Wider card */
         margin: 100px auto 0;
         background: linear-gradient(135deg, #00feba, #a168b5);
@@ -170,46 +170,23 @@
         width: 100%;
         display: flex;
         align-items: center;
-        justify-content: space-between;
         gap: 10px;
-    }
-    
-    .auto-location {
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        display: flex;
-    }
-  
-
-    .auto-location button img{
-        width: 40px;
-    }
-
-    .auto-location button {
-        border: 0;
-        outline: 0;
-        background: #ebfffc;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        cursor: pointer;
+        justify-content: space-evenly;
     }
     
     .search input {
+        flex: 1; /* Takes most of the space */
         border: 0;
         outline: 0;
         background: #ebfffc;
         color: #555;
-        padding: 12px 25px;
+        padding: 10px 25px;
         height: 60px;
         border-radius: 30px;
-        flex: .75;
         font-size: 18px;
     }
     
-    .search button {
+    .search button, .auto-location button {
         border: 0;
         outline: 0;
         background: #ebfffc;
@@ -217,6 +194,14 @@
         width: 60px;
         height: 60px;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .auto-location {
+        display: flex;
+        align-items: center;
     }
     
     .search button img {
