@@ -2,11 +2,52 @@
 @inject HttpClient Http
 @using Microsoft.AspNetCore.Components.Authorization
 @inject NavigationManager NavigationManager
+@using Microsoft.JSInterop
+@inject IJSRuntime JS
 @using MWA.Services
 @inject UserSessionService UserSessionService
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @rendermode InteractiveServer
 
-<h1>Log In</h1>
 
+<body class="login-page"></body>
 
+<div class="login-card">
+    <div class="login-form">
+        <input type="text" placeholder="Username" spellcheck="false" bind="@username">
+        <input type="password" placeholder="Password" bind="@password">
+        <button @onclick="HandleLogin">Log In</button>
+    </div>
+    
+    <div class="error" style="display: none;">
+        <p>Invalid username or password!</p>
+    </div>
+
+    <p class="signup-text">Don't have an account? <a href="/signup">Sign Up</a></p>
+</div>
+
+<script>
+    function showErrorMessage() {
+        document.querySelector(".error").style.display = "block";
+    }
+</script>
+
+@code {
+    private string username = "";
+    private string password = "";
+
+    private async Task HandleLogin()
+    {
+        var response = await Http.PostAsJsonAsync("/api/auth/login", new { Username = username, Password = password });
+        if (response.IsSuccessStatusCode)
+        {
+            var userId = await response.Content.ReadAsStringAsync();
+            UserSessionService.SetLoggedInUserId(userId);
+            NavigationManager.NavigateTo("/weather");
+        }
+        else
+        {
+            await JS.InvokeVoidAsync("showErrorMessage");
+        }
+    }
+}
