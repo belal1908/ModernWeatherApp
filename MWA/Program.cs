@@ -1,6 +1,21 @@
+using System.Net.Http; // Ensure this is included
 using MWA.Components;
+using MWA.Services;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<HttpClient>(sp =>
+{
+    var httpClient = new HttpClient
+    {
+        BaseAddress = new Uri("https://api.openweathermap.org") // Change to your API base URL if needed
+    };
+    return httpClient;
+});
+
+// ✅ Register UserSessionService
+builder.Services.AddScoped<UserSessionService>();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
@@ -12,13 +27,10 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error", createScopeForErrors: true);
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
-
 app.UseAntiforgery();
 
 app.MapStaticAssets();
