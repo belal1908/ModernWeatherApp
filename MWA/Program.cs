@@ -1,4 +1,4 @@
-using System.Net.Http; // Ensure this is included
+using System.Net.Http; 
 using MWA.Components;
 using MWA.Services;
 using Microsoft.AspNetCore.Builder;
@@ -7,19 +7,17 @@ using Supabase.Gotrue;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Register HttpClient for OpenWeatherMap API
 builder.Services.AddSingleton<HttpClient>(sp =>
 {
     var httpClient = new HttpClient
     {
-        BaseAddress = new Uri("https://api.openweathermap.org") // Change to your API base URL if needed
+        BaseAddress = new Uri("https://api.openweathermap.org")
     };
     return httpClient;
 });
 
-// ✅ Register Supabase Client
-var supabaseUrl = "https://your-supabase-url.supabase.co";  // Replace with your actual Supabase URL
-var supabaseKey = "your-anon-or-service-key";               // Replace with your actual Supabase Key
+var supabaseUrl = "https://lggneeqnofsjwrifizhq.supabase.co";  // Replace with your actual Supabase URL
+var supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnZ25lZXFub2ZzandyaWZpemhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1NTE3NjUsImV4cCI6MjA1NjEyNzc2NX0.eMgNm_nMqAEVwyoTx1-jGQQFL2-s2r0fCut22SeIEEM";               // Replace with your actual Supabase Key
 
 var options = new Supabase.SupabaseOptions
 {
