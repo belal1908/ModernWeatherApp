@@ -11417,6 +11417,304 @@
       ]
     },
     {
+      "Route": "lib/bootstrap/dist/css/signup.css",
+      "AssetFile": "lib/bootstrap/dist/css/signup.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001686340641"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "592"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HIE3AkriBldX9Aptyw8SHWF6lZ6Aluu6f2M77hYQs2Y=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 04:43:36 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/signup.css",
+      "AssetFile": "lib/bootstrap/dist/css/signup.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1475"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 04:43:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/signup.css.gz",
+      "AssetFile": "lib/bootstrap/dist/css/signup.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "592"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HIE3AkriBldX9Aptyw8SHWF6lZ6Aluu6f2M77hYQs2Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 04:43:36 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-HIE3AkriBldX9Aptyw8SHWF6lZ6Aluu6f2M77hYQs2Y="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/signup.ybyde4tded.css",
+      "AssetFile": "lib/bootstrap/dist/css/signup.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001686340641"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "592"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HIE3AkriBldX9Aptyw8SHWF6lZ6Aluu6f2M77hYQs2Y=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 04:43:36 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ybyde4tded"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/signup.css"
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/signup.ybyde4tded.css",
+      "AssetFile": "lib/bootstrap/dist/css/signup.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1475"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 04:43:36 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ybyde4tded"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8qI0MDl7EUvfOu+nN0nQqkqV3D7c+i1LA6ChFQB5jIk="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/signup.css"
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/signup.ybyde4tded.css.gz",
+      "AssetFile": "lib/bootstrap/dist/css/signup.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "592"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"HIE3AkriBldX9Aptyw8SHWF6lZ6Aluu6f2M77hYQs2Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 13 Mar 2025 04:43:36 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ybyde4tded"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-HIE3AkriBldX9Aptyw8SHWF6lZ6Aluu6f2M77hYQs2Y="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/signup.css.gz"
+        }
+      ]
+    },
+    {
       "Route": "lib/bootstrap/dist/css/weather.css",
       "AssetFile": "lib/bootstrap/dist/css/weather.css.gz",
       "Selectors": [

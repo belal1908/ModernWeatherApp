@@ -552,6 +552,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-IEjgJ692nyvn1N/Mp3hW\u002BPVtU1TFZkH3\u002BnEiSWoRoec="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1473"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022IEjgJ692nyvn1N/Mp3hW\u002BPVtU1TFZkH3\u002BnEiSWoRoec=\u0022"},{"Name":"Last-Modified","Value":"Thu, 06 Mar 2025 06:30:06 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/signup.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\signup.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-8qI0MDl7EUvfOu\u002BnN0nQqkqV3D7c\u002Bi1LA6ChFQB5jIk="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1475"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228qI0MDl7EUvfOu\u002BnN0nQqkqV3D7c\u002Bi1LA6ChFQB5jIk=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 04:43:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/signup.ybyde4tded.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\signup.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"ybyde4tded"},{"Name":"integrity","Value":"sha256-8qI0MDl7EUvfOu\u002BnN0nQqkqV3D7c\u002Bi1LA6ChFQB5jIk="},{"Name":"label","Value":"_content/MWA/lib/bootstrap/dist/css/signup.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1475"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u00228qI0MDl7EUvfOu\u002BnN0nQqkqV3D7c\u002Bi1LA6ChFQB5jIk=\u0022"},{"Name":"Last-Modified","Value":"Thu, 13 Mar 2025 04:43:36 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/weather.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\weather.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
