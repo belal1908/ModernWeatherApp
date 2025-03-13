@@ -185,6 +185,10 @@
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/login.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/login.css"
+    },
+    {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/weather.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/weather.css"
     },

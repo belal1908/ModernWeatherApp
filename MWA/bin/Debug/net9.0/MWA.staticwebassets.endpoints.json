@@ -11119,6 +11119,304 @@
       ]
     },
     {
+      "Route": "lib/bootstrap/dist/css/login.0ocbnz42xz.css",
+      "AssetFile": "lib/bootstrap/dist/css/login.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001683501684"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LlsC8ZpUnqMAWDugNovlHAoaSIGv8H3cxTat7aICOWg=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 06:30:06 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0ocbnz42xz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/login.css"
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/login.0ocbnz42xz.css",
+      "AssetFile": "lib/bootstrap/dist/css/login.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1473"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 06:30:06 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0ocbnz42xz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/login.css"
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/login.0ocbnz42xz.css.gz",
+      "AssetFile": "lib/bootstrap/dist/css/login.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LlsC8ZpUnqMAWDugNovlHAoaSIGv8H3cxTat7aICOWg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 06:30:06 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "0ocbnz42xz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-LlsC8ZpUnqMAWDugNovlHAoaSIGv8H3cxTat7aICOWg="
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/css/login.css.gz"
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/login.css",
+      "AssetFile": "lib/bootstrap/dist/css/login.css.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001683501684"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LlsC8ZpUnqMAWDugNovlHAoaSIGv8H3cxTat7aICOWg=\""
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 06:30:06 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/login.css",
+      "AssetFile": "lib/bootstrap/dist/css/login.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1473"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 06:30:06 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IEjgJ692nyvn1N/Mp3hW+PVtU1TFZkH3+nEiSWoRoec="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/css/login.css.gz",
+      "AssetFile": "lib/bootstrap/dist/css/login.css.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "593"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"LlsC8ZpUnqMAWDugNovlHAoaSIGv8H3cxTat7aICOWg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 06 Mar 2025 06:30:06 GMT"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-LlsC8ZpUnqMAWDugNovlHAoaSIGv8H3cxTat7aICOWg="
+        }
+      ]
+    },
+    {
       "Route": "lib/bootstrap/dist/css/weather.css",
       "AssetFile": "lib/bootstrap/dist/css/weather.css.gz",
       "Selectors": [
