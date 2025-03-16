@@ -13,13 +13,13 @@
 
 <div class="login-card">
     <div class="login-form">
-        <input type="text" placeholder="Username" spellcheck="false" bind="@username">
-        <input type="password" placeholder="Password" bind="@password">
+        <input type="text" placeholder="Email" spellcheck="false" @bind="email">
+        <input type="password" placeholder="Password" @bind="password">
         <button @onclick="HandleLogin">Log In</button>
     </div>
     
     <div class="error" style="display: none;">
-        <p>Invalid username or password!</p>
+        <p>Invalid email or password!</p>
     </div>
 
     <p class="signup-text">Don't have an account? <a href="/signup">Sign Up</a></p>
@@ -29,19 +29,38 @@
     function showErrorMessage() {
         document.querySelector(".error").style.display = "block";
     }
+
+    function storeToken(token) {
+        localStorage.setItem("supabase_token", token);
+    }
 </script>
 
 @code {
-    private string username = "";
+    private string email = "";
     private string password = "";
 
     private async Task HandleLogin()
     {
-        var response = await Http.PostAsJsonAsync("/api/auth/login", new { Username = username, Password = password });
+        // Check if the user exists
+        var checkUserResponse = await Http.GetAsync($"/api/auth/check-user?username={email}");
+        if (!checkUserResponse.IsSuccessStatusCode)
+        {
+            await JS.InvokeVoidAsync("showErrorMessage");
+            return;
+        }
+
+        // Proceed with login via Supabase authentication
+        var response = await Http.PostAsJsonAsync("/api/auth/login", new { Username = email, Password = password });
+
         if (response.IsSuccessStatusCode)
         {
-            var userId = await response.Content.ReadAsStringAsync();
-            UserSessionService.SetLoggedInUserId(userId);
+            var authResult = await response.Content.ReadAsStringAsync();
+
+            // Store authentication token
+            await JS.InvokeVoidAsync("storeToken", authResult);
+
+            // Set session and redirect
+            UserSessionService.SetLoggedInUserId(authResult);
             NavigationManager.NavigateTo("/weather");
         }
         else
