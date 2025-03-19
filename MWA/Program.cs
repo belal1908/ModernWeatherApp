@@ -27,7 +27,8 @@ var options = new Supabase.SupabaseOptions
 var supabaseClient = new Supabase.Client(supabaseUrl, supabaseKey, options);
 builder.Services.AddSingleton(supabaseClient);
 
-builder.Services.AddScoped<UserSessionService>();
+builder.Services.AddScoped<UserStateService>();
+builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

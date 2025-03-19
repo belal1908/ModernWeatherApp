@@ -1,71 +1,60 @@
 @page "/login"
-@inject HttpClient Http
-@using Microsoft.AspNetCore.Components.Authorization
-@inject NavigationManager NavigationManager
-@using Microsoft.JSInterop
-@inject IJSRuntime JS
-@using MWA.Services
-@inject UserSessionService UserSessionService
-@inject AuthenticationStateProvider AuthenticationStateProvider
 @rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+
+@using MWA.Services
+
+@inject AuthService authService
+@inject UserStateService userState
 
 <body class="login-page"></body>
 
 <div class="login-card">
     <div class="login-form">
         <input type="text" placeholder="Email" spellcheck="false" @bind="email">
-        <input type="password" placeholder="Password" @bind="password">
-        <button @onclick="HandleLogin">Log In</button>
+        <input placeholder="Password" @bind="password" type="@passwordInputType">
+        <button @onclick="OnLogin" disabled="@isLoggingIn">Log In</button>
+        <button @onclick="TogglePasswordVisibility">@passwordIcon</button>
     </div>
-    
-    <div class="error" style="display: none;">
-        <p>Invalid email or password!</p>
+
+    <div class="error" style="@(string.IsNullOrEmpty(errorMessage) ? "display: none;" : "display: block;")">
+        <p>@errorMessage</p>
     </div>
 
     <p class="signup-text">Don't have an account? <a href="/signup">Sign Up</a></p>
 </div>
 
-<script>
-    function showErrorMessage() {
-        document.querySelector(".error").style.display = "block";
-    }
-
-    function storeToken(token) {
-        localStorage.setItem("supabase_token", token);
-    }
-</script>
-
 @code {
     private string email = "";
     private string password = "";
+    private bool isLoggingIn = false;
+    private string? errorMessage;
 
-    private async Task HandleLogin()
+    private bool isPasswordVisible = false;
+    private string passwordInputType => isPasswordVisible ? "text" : "password";
+    private string passwordIcon => isPasswordVisible ? "🙈" : "👁️";
+
+public async Task OnLogin()
+{
+    if (isLoggingIn) return;
+
+    isLoggingIn = true;
+    string? result = await authService.SignIn(email, password); // ✅ Now matches return type
+
+    if (string.IsNullOrEmpty(result))
     {
-        // Check if the user exists
-        var checkUserResponse = await Http.GetAsync($"/api/auth/check-user?username={email}");
-        if (!checkUserResponse.IsSuccessStatusCode)
-        {
-            await JS.InvokeVoidAsync("showErrorMessage");
-            return;
-        }
+        NavigationManager.NavigateTo("/weather");
+    }
+    else
+    {
+        errorMessage = result; // Show error message
+    }
 
-        // Proceed with login via Supabase authentication
-        var response = await Http.PostAsJsonAsync("/api/auth/login", new { Username = email, Password = password });
+    isLoggingIn = false;
+}
 
-        if (response.IsSuccessStatusCode)
-        {
-            var authResult = await response.Content.ReadAsStringAsync();
-
-            // Store authentication token
-            await JS.InvokeVoidAsync("storeToken", authResult);
-
-            // Set session and redirect
-            UserSessionService.SetLoggedInUserId(authResult);
-            NavigationManager.NavigateTo("/weather");
-        }
-        else
-        {
-            await JS.InvokeVoidAsync("showErrorMessage");
-        }
+    private void TogglePasswordVisibility()
+    {
+        isPasswordVisible = !isPasswordVisible;
     }
 }
