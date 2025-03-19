@@ -1,38 +1,28 @@
-using Supabase;
-using Supabase.Gotrue;
-
 public class AuthService
 {
-    private readonly Supabase.Client _supabaseClient; // ✅ Declare it
+    private readonly Supabase.Client? _supabaseClient;
 
-    // ✅ Inject it via constructor
-    public AuthService(Supabase.Client supabaseClient)
+    public AuthService(Supabase.Client? supabaseClient)
     {
-        _supabaseClient = supabaseClient ?? throw new ArgumentNullException(nameof(supabaseClient));
+        _supabaseClient = supabaseClient ?? throw new ArgumentNullException(nameof(supabaseClient), "Supabase client is not initialized.");
     }
 
     public async Task<string?> SignIn(string email, string password)
     {
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        if (_supabaseClient == null)
         {
-            return "Email and password are required.";
+            return "Authentication service is unavailable.";
         }
 
         var response = await _supabaseClient.Auth.SignIn(email, password);
-
-        if (response.User != null)
-        {
-            return null; // ✅ Successful login
-        }
-
-        return "Invalid credentials!"; // ✅ Return error message
+        return response != null ? null : "Invalid login credentials.";
     }
 
     public async Task<bool> SignUp(string email, string password)
     {
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        if (_supabaseClient == null)
         {
-            return false; // ✅ Prevent null error
+            return false;
         }
 
         var response = await _supabaseClient.Auth.SignUp(email, password);

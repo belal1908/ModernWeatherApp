@@ -12,9 +12,8 @@
 <div class="login-card">
     <div class="login-form">
         <input type="text" placeholder="Email" spellcheck="false" @bind="email">
-        <input placeholder="Password" @bind="password" type="@passwordInputType">
+        <input type="password" placeholder="Password" @bind="password">
         <button @onclick="OnLogin" disabled="@isLoggingIn">Log In</button>
-        <button @onclick="TogglePasswordVisibility">@passwordIcon</button>
     </div>
 
     <div class="error" style="@(string.IsNullOrEmpty(errorMessage) ? "display: none;" : "display: block;")">
@@ -30,31 +29,22 @@
     private bool isLoggingIn = false;
     private string? errorMessage;
 
-    private bool isPasswordVisible = false;
-    private string passwordInputType => isPasswordVisible ? "text" : "password";
-    private string passwordIcon => isPasswordVisible ? "🙈" : "👁️";
-
-public async Task OnLogin()
-{
-    if (isLoggingIn) return;
-
-    isLoggingIn = true;
-    string? result = await authService.SignIn(email, password); // ✅ Now matches return type
-
-    if (string.IsNullOrEmpty(result))
+    public async Task OnLogin()
     {
-        NavigationManager.NavigateTo("/weather");
-    }
-    else
-    {
-        errorMessage = result; // Show error message
-    }
+        if (isLoggingIn) return;
 
-    isLoggingIn = false;
-}
+        isLoggingIn = true;
+        string? result = await authService.SignIn(email, password);
 
-    private void TogglePasswordVisibility()
-    {
-        isPasswordVisible = !isPasswordVisible;
+        if (string.IsNullOrEmpty(result))
+        {
+            NavigationManager.NavigateTo("/weather");
+        }
+        else
+        {
+            errorMessage = result;
+        }
+
+        isLoggingIn = false;
     }
 }
