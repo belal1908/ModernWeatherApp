@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Ua6dJtdo9apUDGDD10C6fRXqiZ5AaNTk4v6dK7yCguc=",
+  "Hash": "d8R97Z1greKDiuQyqeIVS3/C1DU8rAuhHSXv0OnlhVk=",
   "Source": "MWA",
   "BasePath": "_content/MWA",
   "Mode": "Default",
@@ -1149,6 +1149,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.png"
+    },
+    {
+      "Identity": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/Belal_s_Resume.pdf",
+      "SourceId": "MWA",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/",
+      "BasePath": "_content/MWA",
+      "RelativePath": "images/Belal_s_Resume#[.{fingerprint}]?.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ljf36asztd",
+      "Integrity": "cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/Belal_s_Resume.pdf"
     },
     {
       "Identity": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/clear.png",
@@ -2747,6 +2768,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
+    },
+    {
+      "Route": "images/Belal_s_Resume.ljf36asztd.pdf",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/Belal_s_Resume.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105883"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 09 Apr 2025 08:37:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ljf36asztd"
+        },
+        {
+          "Name": "label",
+          "Value": "images/Belal_s_Resume.pdf"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY="
+        }
+      ]
+    },
+    {
+      "Route": "images/Belal_s_Resume.pdf",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/Belal_s_Resume.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105883"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 09 Apr 2025 08:37:32 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY="
         }
       ]
     },
@@ -17683,7 +17786,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -17744,7 +17847,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -17789,7 +17892,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -17844,7 +17947,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -17905,7 +18008,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -17950,7 +18053,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18005,7 +18108,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18058,7 +18161,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18095,7 +18198,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18142,7 +18245,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18195,7 +18298,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18232,7 +18335,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Cache-Control",

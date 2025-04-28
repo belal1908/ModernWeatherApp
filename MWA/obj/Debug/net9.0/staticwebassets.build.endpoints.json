@@ -43,7 +43,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Vary",
@@ -92,7 +92,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         }
       ],
       "EndpointProperties": [
@@ -141,7 +141,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Vary",
@@ -204,7 +204,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Vary",
@@ -245,7 +245,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         }
       ],
       "EndpointProperties": [
@@ -286,7 +286,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Thu, 06 Mar 2025 05:56:55 GMT"
+          "Value": "Mon, 28 Apr 2025 07:28:53 GMT"
         },
         {
           "Name": "Vary",
@@ -677,6 +677,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-4mWsDy3aHl36ZbGt8zByK7Pvd4kRUoNgTYzRnwmPHwg="
+        }
+      ]
+    },
+    {
+      "Route": "images/Belal_s_Resume.ljf36asztd.pdf",
+      "AssetFile": "images/Belal_s_Resume.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105883"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 09 Apr 2025 08:37:32 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ljf36asztd"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY="
+        },
+        {
+          "Name": "label",
+          "Value": "images/Belal_s_Resume.pdf"
+        }
+      ]
+    },
+    {
+      "Route": "images/Belal_s_Resume.pdf",
+      "AssetFile": "images/Belal_s_Resume.pdf",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "105883"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "application/pdf"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 09 Apr 2025 08:37:32 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cR9gGs2II1kov/yxaW7AMSFVK80IlxDSzYESCn+D4cY="
         }
       ]
     },

@@ -1,3 +1,8 @@
+using System;
+using System.Threading.Tasks;
+
+namespace MWA.Services
+{
 public class AuthService
 {
     private readonly Supabase.Client? _supabaseClient;
@@ -28,4 +33,5 @@ public class AuthService
         var response = await _supabaseClient.Auth.SignUp(email, password);
         return response.User != null;
     }
+}
 }

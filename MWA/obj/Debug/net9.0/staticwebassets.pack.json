@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets/favicon.png"
     },
     {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/Belal_s_Resume.pdf",
+      "PackagePath": "staticwebassets/images/Belal_s_Resume.pdf"
+    },
+    {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/clear.png",
       "PackagePath": "staticwebassets/images/clear.png"
     },
