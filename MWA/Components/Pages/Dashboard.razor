@@ -1,137 +1,87 @@
-@inject IJSRuntime JS
-
 @page "/dashboard"
+@rendermode InteractiveServer
 
-@inject MWA.Services.UserStateService UserStateService
-@inject HttpClient Http
+@using MWA.Models
+@using MWA.Services
+@using MWA.DBConnections
+@using Microsoft.AspNetCore.Components.Authorization
+@inject WeatherService WeatherService
+@inject MongoHelper MongoHelper
+@inject NavigationManager Navigation
+@inject AuthenticationStateProvider AuthProvider
+@inject Supabase.Client supabase
+@using Supabase.Gotrue;
 
-<PageTitle>Dashboard</PageTitle>
+<h2 class="dashboard-title">Your Favorite Cities</h2>
 
-@if (!isRegisteredUser)
+@if (!isAuthenticated)
 {
-    <div class="container mt-5 text-center">
-        <h2 class="text-danger">🚫 Access Denied</h2>
-        <p>Please <a href="/login">log in</a> to access your personal dashboard.</p>
-    </div>
+    <p class="login-warning">Please log in first to use Dashboard.</p>
+}
+else if (isLoading)
+{
+    <p>Loading your saved cities...</p>
+}
+else if (favoriteWeatherList.Count == 0)
+{
+    <p>You have no favorite cities saved.</p>
 }
 else
 {
-    <div class="container mt-5">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h3>Welcome, @UserStateService.CurrentUser.Name! 👋</h3>
-            <button class="mode-toggle btn btn-outline-secondary" @onclick="ToggleMode">
-                Toggle Theme
-            </button>
-        </div>
-
-        <div class="search mb-4">
-            <input class="form-control" @bind="searchCity" placeholder="Enter City Name" />
-            <button class="btn btn-primary mt-2" @onclick="() => FetchWeather(searchCity)">Search</button>
-        </div>
-
-        @if (!string.IsNullOrEmpty(errorMessage))
+    <div class="dashboard-grid">
+        @foreach (var item in favoriteWeatherList)
         {
-            <div class="alert alert-danger text-center">@errorMessage</div>
-        }
-
-        @if (favoriteCities.Any())
-        {
-            <h4 class="mt-5">❤️ Your Favorite Cities</h4>
-            <div class="row">
-                @foreach (var city in favoriteCities)
-                {
-                    <div class="col-md-3 mb-3">
-                        <button class="btn btn-outline-danger w-100" @onclick="() => FetchWeather(city)">
-                            @city
-                        </button>
-                    </div>
-                }
-            </div>
-        }
-
-        @if (weatherData is not null)
-        {
-            <div class="card shadow mt-4">
-                <div class="card-body text-center">
-                    <h4>@weatherData.Name</h4>
-                    <h5>🌡️ Temp: <strong>@weatherData.Temperature</strong> °C</h5>
-
-                    <div class="row mt-3">
-                        <div class="col">
-                            <p>🌤️ Weather: <strong>@weatherData.Weather</strong></p>
-                            <p>📝 @weatherData.Description</p>
-                        </div>
-                        <div class="col">
-                            <p>💧 Humidity: @weatherData.Humidity%</p>
-                            <p>🌬️ Wind: @weatherData.Wind km/h</p>
-                        </div>
-                    </div>
-
-                    <button class="btn btn-outline-danger mt-3" @onclick="HandleFavoriteClick">
-                        ❤️ Add to Favorites
-                    </button>
-                </div>
+            <div class="weather-card">
+                <h3>@item.CityName</h3>
+                <p>@item.Weather.Main - @item.Weather.Description</p>
+                <p>Temp: @item.Weather.Temperature°C</p>
+                <p>Humidity: @item.Weather.Humidity%</p>
+                <p>Wind: @item.Weather.WindSpeed m/s</p>
             </div>
         }
     </div>
 }
 
 @code {
-    private List<string> favoriteCities = new();
-    private WeatherData? weatherData;
-    private string searchCity = string.Empty;
-    private string? errorMessage;
-    private bool isRegisteredUser => UserStateService.IsAuthenticated;
+    private bool isAuthenticated = false;
+    private bool isLoading = true;
 
-    private async Task FetchWeather(string city)
+    private string userId = string.Empty;
+    private List<FavoriteCity> favoriteCities = new();
+    private List<(string CityName, WeatherResponse Weather)> favoriteWeatherList = new();
+
+    protected override async Task OnInitializedAsync()
     {
-        if (string.IsNullOrWhiteSpace(city))
+        var session = supabase.Auth.CurrentSession;
+        isAuthenticated = session?.User != null;
+
+        if (!isAuthenticated || session.User?.Id == null)
+        {
+            isLoading = false;
             return;
+        }
+
+        userId = session?.User?.Id ?? string.Empty;
 
         try
         {
-            string apiKey = "d8cab8bea5e32d2b21acf2fb9419eebf";
-            var apiUrl = $"https://api.openweathermap.org/data/2.5/weather?q={city}&units=metric&appid={apiKey}";
-
-            weatherData = await Http.GetFromJsonAsync<WeatherData>(apiUrl);
-            errorMessage = null;
+            favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
+            foreach (var fav in favoriteCities)
+            {
+                var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
+                if (weather != null)
+                {
+                    favoriteWeatherList.Add((fav.CityName, weather));
+                }
+            }
         }
-        catch
+        catch (Exception ex)
         {
-            errorMessage = "City not found. Try another one.";
+            Console.WriteLine($"Error loading favorite cities: {ex.Message}");
         }
-    }
-
-    private void HandleFavoriteClick()
-    {
-        if (!isRegisteredUser)
+        finally
         {
-            errorMessage = "Please log in to add cities to favorites.";
-            return;
+            isLoading = false;
         }
-
-        if (weatherData?.Name is not null && !favoriteCities.Contains(weatherData.Name))
-        {
-            favoriteCities.Add(weatherData.Name);
-        }
-    }
-
-    private void ToggleMode()
-    {
-        JS.InvokeVoidAsync("toggleMode"); // global dark mode
-    }
-
-    public class WeatherData
-    {
-        public string? Name { get; set; }
-        public double Temperature { get; set; }
-        public string? Weather { get; set; }
-        public string? Description { get; set; }
-        public double Wind { get; set; }
-        public int Humidity { get; set; }
-        public int Pressure { get; set; }
-        public double Visibility { get; set; }
-        public long Sunrise { get; set; }
-        public long Sunset { get; set; }
     }
 }

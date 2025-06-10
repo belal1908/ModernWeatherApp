@@ -169,3 +169,7 @@
     .city-btn:hover {
         background: rgba(255, 255, 255, 0.1);
     }
+
+ .favorites button img {
+        width: 25px;
+    }

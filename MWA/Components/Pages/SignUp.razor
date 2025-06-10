@@ -1,17 +1,17 @@
 @page "/signup"
 @rendermode InteractiveServer
 @inject NavigationManager NavigationManager
-
 @using MWA.Services
-
 @inject AuthService authService
 
 <div class="card">
     <div class="signup-form">
-        <input type="email" placeholder="Enter Email" @bind="email" required>
-        <input type="password" placeholder="Enter Password" @bind="password" required>
-        <input type="password" placeholder="Confirm Password" @bind="confirmPassword" required>
-        <button @onclick="OnSignup" disabled="@isSigningUp">Sign Up</button>
+        <input type="email" placeholder="Enter Email" @bind="email" required />
+        <input type="password" placeholder="Enter Password" @bind="password" required />
+        <input type="password" placeholder="Confirm Password" @bind="confirmPassword" required />
+        <button @onclick="OnSignup" disabled="@isSigningUp">
+            @(isSigningUp ? "Signing up..." : "Sign Up")
+        </button>
     </div>
 
     <div class="error" style="@(string.IsNullOrEmpty(signupMessage) ? "display: none;" : "display: block;")">
@@ -22,27 +22,32 @@
 </div>
 
 @code {
-    private string? email;
-    private string? password;
-    private string? confirmPassword;
+    private string email = "";
+    private string password = "";
+    private string confirmPassword = "";
     private bool isSigningUp = false;
     private string signupMessage = "";
-    
+
     private async Task OnSignup()
     {
         if (isSigningUp) return;
 
-        isSigningUp = true;
-        signupMessage = "";
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password) || string.IsNullOrWhiteSpace(confirmPassword))
+        {
+            signupMessage = "All fields are required.";
+            return;
+        }
 
         if (password != confirmPassword)
         {
             signupMessage = "Passwords do not match!";
-            isSigningUp = false;
             return;
         }
 
-        bool isRegistered = await authService.SignUp(email, password);
+        isSigningUp = true;
+        signupMessage = "";
+
+        bool isRegistered = await authService.SignUp(email.Trim(), password);
 
         if (isRegistered)
         {

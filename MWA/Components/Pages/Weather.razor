@@ -1,5 +1,15 @@
 ﻿@page "/weather"
 @attribute [StreamRendering]
+@rendermode InteractiveServer
+@using MWA.DBConnections
+@using MWA.Models
+@using MWA.Services
+@using MudBlazor
+@inject MongoHelper mongoHelper
+@inject UserStateService UserSessionService
+@inject IJSRuntime JS
+@inject ISnackbar Snackbar
+@inject Supabase.Client supabase
 
 <PageTitle >Weather</PageTitle>
 
@@ -71,10 +81,91 @@
             <button class="city-btn" data-city="Sydney">Sydney</button>
         </div>
     </div>
+
+    <div class="favorites" style="margin-top: 30px; text-align: center;">
+        <button @onclick="SaveCurrentCityToFavorites" class="city-btn"><img src="images/favorite.png" alt=""></button>
+        <ul>
+            @foreach (var favCity in favoriteCities)
+            {
+                <li style="color: white;">@favCity.CityName <button @onclick="() => DeleteFavoriteCity(favCity.CityName)" class="city-btn">Remove</button></li>
+            }
+        </ul>
+    </div>
 </div>
 
+@code {
+    private List<FavoriteCity> favoriteCities = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var userId = UserSessionService.LoggedInUserId;
+        if (!string.IsNullOrEmpty(userId))
+        {
+            favoriteCities = await mongoHelper.GetFavoriteCitiesAsync(userId);
+        }
+    }
+
+    private async Task SaveCurrentCityToFavorites()
+    { Console.WriteLine("SaveCurrentCityToFavorites called");
+        var cityName = await JS.InvokeAsync<string>("getCurrentCityName");
+            Console.WriteLine($"Fetched City: {cityName}");
+        if (string.IsNullOrEmpty(cityName)){
+        Console.WriteLine("City name is null or empty.");
+        return;
+    }
+
+        var userId = UserSessionService.LoggedInUserId;
+        Console.WriteLine($"User ID: {userId}");
+
+        if (string.IsNullOrEmpty(userId))
+        {
+        Console.WriteLine("User ID is null or empty.");
+        return;
+        }
+
+        var alreadyExists = await mongoHelper.IsCityFavoritedAsync(cityName, userId);
+        if (alreadyExists)
+        {
+            Snackbar.Add("City already in favorites.", Severity.Info);
+            return;
+        }
+
+        var favoriteCity = new FavoriteCity
+        {
+            CityName = cityName,
+            UserId = userId,
+            WeatherDetails = null // To be filled if want to store more info later in the future
+        };
+
+        await mongoHelper.AddFavoriteCityAsync(favoriteCity);
+        favoriteCities.Add(favoriteCity);
+        Snackbar.Add("City added to favorites!", Severity.Success);
+        StateHasChanged();
+    }
+
+    private async Task DeleteFavoriteCity(string cityName)
+    {
+        var userId = UserSessionService.LoggedInUserId;
+        if (string.IsNullOrEmpty(userId)) return;
+
+        await mongoHelper.DeleteFavoriteCityAsync(cityName, userId);
+        favoriteCities.RemoveAll(c => c.CityName == cityName);
+        Snackbar.Add("City removed from favorites.", Severity.Warning);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+{
+    if (firstRender)
+    {
+        await JS.InvokeVoidAsync("initializeWeatherButtons");
+    }
+}
+}
 <script>
-    const apiKey = "d8cab8bea5e32d2b21acf2fb9419eebf";
+
+    if (typeof apiKey === 'undefined') {
+    var apiKey = "d8cab8bea5e32d2b21acf2fb9419eebf";
+}
     const weatherUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
     const forecastUrl = "https://api.openweathermap.org/data/2.5/forecast?units=metric&q=";
     
@@ -87,8 +178,13 @@
     const autoLocationBtn = document.querySelector(".auto-location");
 
     async function fetchWeather(city) {
-        try {
-            const response = await fetch(`${weatherUrl}${city}&appid=${apiKey}`);
+    if (!city || city.trim() === "") {
+        console.warn("City is undefined or empty.");
+        return;
+    }
+
+    try {
+        const response = await fetch(`${weatherUrl}${encodeURIComponent(city)}&appid=${apiKey}`);
             if (!response.ok) {
                 throw new Error("Invalid City Name!");
             }
@@ -188,25 +284,36 @@
         forecastSection.style.display = "none";
     }
 
-    searchButton.addEventListener("click", () => {
-        if (searchBox.value.trim() !== "") {
-            fetchWeather(searchBox.value);
-        }
-    });
+    document.addEventListener("DOMContentLoaded", () => {
+    @* const searchBox = document.querySelector(".search input");
+    const searchButton = document.querySelector(".search button");
+    const autoLocationBtn = document.querySelector(".auto-location button");
+    const weatherCard = document.querySelector(".card"); *@
 
-    autoLocationBtn.addEventListener("click", () => {
-        getUserLocation();
-    });
+    if (searchButton && searchBox) {
+        searchButton.addEventListener("click", () => {
+            if (searchBox.value.trim() !== "") {
+                fetchWeather(searchBox.value);
+            }
+        });
+    }
+
+    if (autoLocationBtn) {
+        autoLocationBtn.addEventListener("click", () => {
+            getUserLocation();
+        });
+    }
 
     document.querySelectorAll(".city-btn").forEach(button => {
         button.addEventListener("click", () => fetchWeather(button.dataset.city));
     });
 
     document.addEventListener("click", (event) => {
-        if (!weatherCard.contains(event.target)) {
+        if (weatherCard && !weatherCard.contains(event.target)) {
             resetApp();
         }
     });
+});
 
     function toggleMode() {
     document.querySelector(".weather-page").classList.toggle("dark-mode");
@@ -215,6 +322,43 @@
     modeButton.innerHTML = `<img src="images/contrast.png" alt="Theme Toggle" width="24px">`;
 }
 
+window.getCurrentCityName = () => {
+    const city = document.querySelector(".city")?.innerText;
+    return city || "";
+};
 
+
+window.initializeWeatherButtons = () => {
+    const searchBox = document.querySelector(".search input");
+    const searchButton = document.querySelector(".search button");
+    const autoLocationBtn = document.querySelector(".auto-location button");
+    const weatherCard = document.querySelector(".card");
+
+    if (searchButton && searchBox) {
+        searchButton.addEventListener("click", () => {
+            if (searchBox.value.trim() !== "") {
+                fetchWeather(searchBox.value);
+            }
+        });
+    }
+
+    if (autoLocationBtn) {
+        autoLocationBtn.addEventListener("click", () => {
+            getUserLocation();
+        });
+    }
+
+    document.querySelectorAll(".city-btn").forEach(button => {
+        button.addEventListener("click", () => fetchWeather(button.dataset.city));
+    });
+
+    document.addEventListener("click", (event) => {
+        if (weatherCard && !weatherCard.contains(event.target)) {
+            resetApp();
+        }
+    });
+};
 
 </script>
+
+

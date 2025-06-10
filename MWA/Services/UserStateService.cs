@@ -4,6 +4,14 @@ namespace MWA.Services
 {
     public class UserStateService
     {
+
+        public string LoggedInUserId { get; private set; } = string.Empty;
+
+        public void SetLoggedInUserId(string userId)
+        {
+            LoggedInUserId = userId;
+            Console.WriteLine($"UserSessionService: LoggedInUserId set to {LoggedInUserId}");
+        }
         public string? UserId { get; private set; }
         public string? UserEmail { get; private set; }
 
@@ -16,7 +24,7 @@ namespace MWA.Services
         {
             UserId = userId;
             UserEmail = userEmail;
-            CurrentUser = new User { Id = userId, Email = userEmail }; // Assuming you have a User class with Id and Email
+            CurrentUser = new User { Id = userId, Email = userEmail }; 
         }
 
         public void ClearUser()

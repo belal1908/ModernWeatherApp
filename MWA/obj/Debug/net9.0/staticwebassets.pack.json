@@ -13,10 +13,6 @@
       "PackagePath": "staticwebassets/favicon.png"
     },
     {
-      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/Belal_s_Resume.pdf",
-      "PackagePath": "staticwebassets/images/Belal_s_Resume.pdf"
-    },
-    {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/clear.png",
       "PackagePath": "staticwebassets/images/clear.png"
     },
@@ -31,6 +27,10 @@
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/drizzle.png",
       "PackagePath": "staticwebassets/images/drizzle.png"
+    },
+    {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/favorite.png",
+      "PackagePath": "staticwebassets/images/favorite.png"
     },
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/images/gps.png",
@@ -189,6 +189,10 @@
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
     },
     {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/dashboard.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/dashboard.css"
+    },
+    {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/login.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/login.css"
     },
@@ -247,6 +251,10 @@
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
+    },
+    {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/weather.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/weather.js"
     },
     {
       "Id": "obj/Debug/net9.0/staticwebassets/msbuild.MWA.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",

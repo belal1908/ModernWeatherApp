@@ -1,11 +1,38 @@
 using System.Net.Http; 
 using MWA.Components;
+using MWA.DBConnections;
+using MWA.Models;
 using MWA.Services;
 using Microsoft.AspNetCore.Builder;
+using MudBlazor.Services;
 using Supabase;
 using Supabase.Gotrue;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// MongoDB Configuration
+var mongoConfig = builder.Configuration.GetSection("MongoDB");
+string connectionString = mongoConfig["ConnectionString"];
+string databaseName = mongoConfig["DatabaseName"];
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new ArgumentNullException(nameof(connectionString), "Connection string cannot be null or empty.");
+}
+
+if (string.IsNullOrEmpty(databaseName))
+{
+    throw new ArgumentNullException(nameof(databaseName), "Database name cannot be null or empty.");
+}
+
+// Service Configuration
+builder.Services.AddScoped(sp => new MongoHelper(connectionString, databaseName));
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://your-api-base-url/") });
+builder.Services.AddRazorPages();
+builder.Services.AddMudServices();
+
+
 
 builder.Services.AddSingleton<HttpClient>(sp =>
 {
@@ -16,8 +43,8 @@ builder.Services.AddSingleton<HttpClient>(sp =>
     return httpClient;
 });
 
-var supabaseUrl = "https://lggneeqnofsjwrifizhq.supabase.co"; 
-var supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxnZ25lZXFub2ZzandyaWZpemhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDA1NTE3NjUsImV4cCI6MjA1NjEyNzc2NX0.eMgNm_nMqAEVwyoTx1-jGQQFL2-s2r0fCut22SeIEEM";               // Replace with your actual Supabase Key
+var supabaseUrl = builder.Configuration["Supabase:Url"]!; 
+var supabaseKey = builder.Configuration["Supabase:Key"]!;           
 
 var options = new Supabase.SupabaseOptions
 {
@@ -26,6 +53,8 @@ var options = new Supabase.SupabaseOptions
 
 var supabaseClient = new Supabase.Client(supabaseUrl, supabaseKey, options);
 builder.Services.AddSingleton(supabaseClient);
+
+builder.Services.AddScoped<WeatherService>();
 
 builder.Services.AddScoped<UserStateService>();
 builder.Services.AddScoped<AuthService>();
