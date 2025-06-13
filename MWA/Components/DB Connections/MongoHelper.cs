@@ -123,6 +123,17 @@ public async Task DeleteAlertsByCityAsync(string userId, string cityName)
     await collection.DeleteManyAsync(filter);
 }
 
+public async Task<UserAlertPreference?> GetUserAlertPreferenceAsync(string userId)
+{
+    var collection = _database.GetCollection<UserAlertPreference>("UserAlertPreferences");
+    return await collection.Find(p => p.UserId == userId).FirstOrDefaultAsync();
+}
 
+public async Task SetUserAlertPreferenceAsync(UserAlertPreference preference)
+{
+    var collection = _database.GetCollection<UserAlertPreference>("UserAlertPreferences");
+    var filter = Builders<UserAlertPreference>.Filter.Eq(p => p.UserId, preference.UserId);
+    await collection.ReplaceOneAsync(filter, preference, new ReplaceOptions { IsUpsert = true });
+}
     }
 }

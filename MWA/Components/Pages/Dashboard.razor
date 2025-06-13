@@ -21,6 +21,19 @@
 
 <h2 class="dashboard-title">Your Favorite Cities</h2>
 
+<h3 class="alert-settings-title">⚙️ Custom Alert Settings</h3>
+<div class="alert-settings">
+    <label>
+        Temp Threshold (°C):
+        <input type="number" @bind="tempThreshold" class="threshold-input" />
+    </label>
+    <label>
+        Wind Threshold (m/s):
+        <input type="number" @bind="windThreshold" class="threshold-input" />
+    </label>
+    <button @onclick="SaveThresholds" class="save-btn">💾 Save Preferences</button>
+</div>
+
 <button @onclick="RefreshData" class="refresh-btn">🔄 Refresh</button>
 <button @onclick="ToggleTempUnit" class="temp-toggle-btn">@((showCelsius ? "Switch to °F" : "Switch to °C"))</button>
 
@@ -106,6 +119,13 @@ else
 
         userId = session.User.Id;
 
+        var pref = await MongoHelper.GetUserAlertPreferenceAsync(userId);
+if (pref != null)
+{
+    tempThreshold = pref.TempThreshold;
+    windThreshold = pref.WindThreshold;
+}
+
         try
         {
             favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
@@ -120,7 +140,7 @@ else
                 {
                     favoriteWeatherList.Add((fav.CityName, weather));
 
-                    if (weather.Temperature > 35 || weather.WindSpeed > 25)
+                    if (weather.Temperature > tempThreshold || weather.WindSpeed > windThreshold)
                     {
                         var alertMessage = $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s";
 
@@ -223,6 +243,23 @@ private async Task ToggleMode()
     weatherAlerts.RemoveAll(a => a.Id == alertId);
     StateHasChanged();
 }
+
+
+private double tempThreshold = 35;
+private double windThreshold = 25;
+
+private async Task SaveThresholds()
+{
+    await MongoHelper.SetUserAlertPreferenceAsync(new UserAlertPreference
+    {
+        UserId = userId,
+        TempThreshold = tempThreshold,
+        WindThreshold = windThreshold
+    });
+
+    Console.WriteLine("✅ Preferences saved");
+}
+
 }
 
 <style>

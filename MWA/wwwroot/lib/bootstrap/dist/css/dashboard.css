@@ -199,7 +199,7 @@ body.dark-mode {
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out, transform 0.2s;
+    transition: background-color 0.2s ease-in-out, transform 0.1s;
 }
 
 .unit-toggle-btn:hover {
@@ -267,4 +267,34 @@ body.dark-mode {
 }
 .remove-alert-btn:hover {
     color: #ff2e2e;
+}
+
+/* Custom Alert Styles */
+
+.alert-settings {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+.threshold-input {
+    width: 80px;
+    padding: 0.4rem;
+    margin-left: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.save-btn {
+    padding: 0.5rem 1rem;
+    background-color: #1976d2;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+}
+.save-btn:hover {
+    background-color: #1565c0;
 }
