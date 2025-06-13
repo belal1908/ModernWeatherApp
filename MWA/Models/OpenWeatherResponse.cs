@@ -23,4 +23,13 @@ namespace MWA.Models
     {
         public double Speed { get; set; }
     }
+
+    public class WeatherAlert
+{
+    public string SenderName { get; set; }
+    public string Event { get; set; }
+    public long Start { get; set; }
+    public long End { get; set; }
+    public string Description { get; set; }
+}
 }

@@ -58,7 +58,8 @@ builder.Services.AddScoped<WeatherService>();
 
 builder.Services.AddSingleton<UserStateService>();
 builder.Services.AddScoped<AuthService>();
-
+builder.Services.AddScoped<EmailService>();
+builder.Services.AddScoped<AlertService>();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 

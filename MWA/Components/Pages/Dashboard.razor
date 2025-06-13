@@ -10,20 +10,17 @@
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthProvider
 @inject Supabase.Client supabase
+@inject AlertService AlertService
 @using Supabase.Gotrue;
 
-
-<button class="mode-toggle" onclick="toggleMode()">
+<button class="mode-toggle" @onclick="ToggleMode">
     <img src="images/contrast.png">
 </button>
 
 <h2 class="dashboard-title">Your Favorite Cities</h2>
 
 <button @onclick="RefreshData" class="refresh-btn">🔄 Refresh</button>
-
-<button @onclick="ToggleTempUnit" class="unit-toggle-btn">
-    @((showCelsius ? "Switch to °F" : "Switch to °C"))
-</button>
+<button @onclick="ToggleTempUnit" class="temp-toggle-btn">@((showCelsius ? "Switch to °F" : "Switch to °C"))</button>
 
 @if (!isAuthenticated)
 {
@@ -42,13 +39,21 @@ else
     <div class="dashboard-grid">
         @foreach (var item in favoriteWeatherList)
         {
-            
-            <div class="weather-card">
-            <img src="images/@(item.Weather.Main.ToLower()).png" alt="@item.Weather.Description" width="40" />
+            var themeClass = item.Weather.Main.ToLower() switch
+            {
+                "clear" => "theme-clear",
+                "clouds" => "theme-clouds",
+                "rain" => "theme-rain",
+                "drizzle" => "theme-drizzle",
+                "mist" => "theme-mist",
+                _ => "theme-default"
+            };
+
+            <div class="weather-card @themeClass">
+                <img src="images/@(item.Weather.Main.ToLower()).png" alt="@item.Weather.Description" width="40" />
                 <h3>@item.CityName</h3>
-                <p>Temp: @(showCelsius ? item.Weather.Temperature : (item.Weather.Temperature * 9/5 + 32))@(showCelsius ? "°C" : "°F")</p>
+                <p>Temp: @(showCelsius ? item.Weather.Temperature : (item.Weather.Temperature * 9 / 5 + 32))@(showCelsius ? "°C" : "°F")</p>
                 <p>@item.Weather.Main - @item.Weather.Description</p>
-                <p>Temp: @item.Weather.Temperature°C</p>
                 <p>Humidity: @item.Weather.Humidity%</p>
                 <p>Wind: @item.Weather.WindSpeed m/s</p>
                 <button @onclick="() => RemoveFavorite(item.CityName)" class="remove-btn">Remove</button>
@@ -65,39 +70,46 @@ else
     private List<FavoriteCity> favoriteCities = new();
     private List<(string CityName, WeatherResponse Weather)> favoriteWeatherList = new();
 
-    
-
     protected override async Task OnInitializedAsync()
     {
         var session = supabase.Auth.CurrentSession;
         isAuthenticated = session?.User != null;
 
         if (!isAuthenticated || session.User?.Id == null)
-{
-    Navigation.NavigateTo("/login", forceLoad: true);
-    return;
-}
+        {
+            Navigation.NavigateTo("/login", forceLoad: true);
+            return;
+        }
 
-        userId = session?.User?.Id ?? string.Empty;
+        userId = session.User.Id;
 
         try
         {
             favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
             Console.WriteLine($"Loaded {favoriteCities.Count} favorite cities");
             foreach (var fav in favoriteCities)
-{
-    var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
-    Console.WriteLine($"Fetched weather for {fav.CityName}: {weather?.Main} | {weather?.Temperature}");
+            {
+                var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
+                Console.WriteLine($"Fetched weather for {fav.CityName}: {weather?.Main} | {weather?.Temperature}");
 
-    if (weather != null)
-    {
-        favoriteWeatherList.Add((fav.CityName, weather));
-    }
-    else
-    {
-        Console.WriteLine($"⚠️ Weather data is null for {fav.CityName}");
-    }
-}
+                if (weather != null)
+                {
+                    favoriteWeatherList.Add((fav.CityName, weather));
+
+                    if (weather.Temperature > 35 || weather.WindSpeed > 25)
+                    {
+                        await AlertService.SendAlertEmailAsync(
+                            toEmail: "belalafzal19@gmail.com", // Replace with actual user email
+                            city: fav.CityName,
+                            alertMessage: $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s"
+                        );
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"⚠️ Weather data is null for {fav.CityName}");
+                }
+            }
         }
         catch (Exception ex)
         {
@@ -109,43 +121,50 @@ else
         }
     }
 
-
     private async Task RemoveFavorite(string cityName)
-{
-    if (string.IsNullOrEmpty(userId)) return;
+    {
+        if (string.IsNullOrEmpty(userId)) return;
 
-    await MongoHelper.DeleteFavoriteCityAsync(cityName, userId);
-    favoriteWeatherList.RemoveAll(c => c.CityName == cityName);
-    StateHasChanged();
-}
+        await MongoHelper.DeleteFavoriteCityAsync(cityName, userId);
+        favoriteWeatherList.RemoveAll(c => c.CityName == cityName);
+        StateHasChanged();
+    }
 
     private async Task RefreshData()
-{
-    favoriteWeatherList.Clear();
-    if (!string.IsNullOrEmpty(userId))
     {
-        favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
-        foreach (var fav in favoriteCities)
+        favoriteWeatherList.Clear();
+        if (!string.IsNullOrEmpty(userId))
         {
-            var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
-            if (weather != null)
+            favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
+            foreach (var fav in favoriteCities)
             {
-                favoriteWeatherList.Add((fav.CityName, weather));
+                var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
+                if (weather != null)
+                {
+                    favoriteWeatherList.Add((fav.CityName, weather));
+
+                    if (weather.Temperature > 35 || weather.WindSpeed > 25)
+                    {
+                        await AlertService.SendAlertEmailAsync(
+                            toEmail: "your-user-email@example.com",
+                            city: fav.CityName,
+                            alertMessage: $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s"
+                        );
+                    }
+                }
             }
         }
     }
-}
 
-private bool showCelsius = true;
+    private bool showCelsius = true;
 
-private void ToggleTempUnit()
-{
-    showCelsius = !showCelsius;
-}
+    private void ToggleTempUnit()
+    {
+        showCelsius = !showCelsius;
+    }
 
-private bool IsDarkMode = false;
-
-    private string ModeIcon => "images/contrast.png"; // You can swap icons if needed
+    private bool IsDarkMode = false;
+    private string ModeIcon => "images/contrast.png";
 
     private void ToggleMode()
     {
@@ -153,15 +172,46 @@ private bool IsDarkMode = false;
     }
 }
 
-<script>
-    function toggleMode() {
-        document.body.classList.toggle("dark-mode");
-        localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
-    }
+<style>
+.temp-toggle-btn {
+    margin: 1rem auto;
+    display: block;
+    padding: 0.4rem 0.8rem;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
 
-    document.addEventListener("DOMContentLoaded", function () {
-        if (localStorage.getItem("dark-mode") === "true") {
-            document.body.classList.add("dark-mode");
-        }
-    });
-</script>
+.temp-toggle-btn:hover {
+    background-color: #388e3c;
+}
+
+.theme-clear {
+    background-color: #fceabb;
+    color: #333;
+}
+.theme-clouds {
+    background-color: #dfe6e9;
+    color: #333;
+}
+.theme-rain {
+    background-color: #a4b0be;
+    color: #fff;
+}
+.theme-drizzle {
+    background-color: #74b9ff;
+    color: #fff;
+}
+.theme-mist {
+    background-color: #b2bec3;
+    color: #000;
+}
+.theme-default {
+    background-color: #636e72;
+    color: #fff;
+}
+</style>
