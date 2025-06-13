@@ -104,5 +104,25 @@ public async Task<List<AlertLog>> GetWeatherAlertsAsync(string userId)
         .SortByDescending(a => a.Timestamp)
         .ToListAsync();
 }
+
+
+public async Task DeleteWeatherAlertAsync(string alertId)
+{
+    var collection = _database.GetCollection<AlertLog>("WeatherAlerts");
+    var filter = Builders<AlertLog>.Filter.Eq("_id", alertId);
+    await collection.DeleteOneAsync(filter);
+}
+
+public async Task DeleteAlertsByCityAsync(string userId, string cityName)
+{
+    var collection = _database.GetCollection<AlertLog>("WeatherAlerts");
+    var filter = Builders<AlertLog>.Filter.And(
+        Builders<AlertLog>.Filter.Eq("UserId", userId),
+        Builders<AlertLog>.Filter.Eq("City", cityName)
+    );
+    await collection.DeleteManyAsync(filter);
+}
+
+
     }
 }

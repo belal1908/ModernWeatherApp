@@ -253,6 +253,10 @@
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/bootstrap.min.js.map"
     },
     {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/scripts.js",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/js/scripts.js"
+    },
+    {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/weather.js",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/js/weather.js"
     },

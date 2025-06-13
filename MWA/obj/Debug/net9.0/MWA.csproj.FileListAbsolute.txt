@@ -77,10 +77,8 @@
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/hiy2orlrp5-hrwsygsryq.gz
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/dsupgbaoqq-pk9g2wxc8p.gz
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/6wnvix3as5-ft3s53vfgj.gz
-/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-88rb6ofmdy.gz
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/sp3mxvldpr-0ocbnz42xz.gz
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/hjhnmmj9sj-4twnz3fvg8.gz
-/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/n4xb6rs69c-dv3tdokegi.gz
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pcdt10d17q-6cfz1n2cew.gz
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/nki81aasne-6pdc2jztkx.gz
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/0jgbjtcy8p-493y06b0oq.gz
@@ -111,3 +109,6 @@
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/MWA.pdb
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/MWA.genruntimeconfig.cache
 /Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/ref/MWA.dll
+/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-fg2uiikhsz.gz
+/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/n4xb6rs69c-2r4phvbka3.gz
+/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-6twk34jbqu.gz

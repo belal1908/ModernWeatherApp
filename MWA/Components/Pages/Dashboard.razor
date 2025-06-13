@@ -1,6 +1,8 @@
 @page "/dashboard"
 @rendermode InteractiveServer
 
+@inject IJSRuntime JS
+
 @using MWA.Models
 @using MWA.Services
 @using MWA.DBConnections
@@ -68,18 +70,19 @@ else
     </div>
 
     @if (weatherAlerts.Count > 0)
-    {
-        <h3 class="alert-history-title">📜 Weather Alerts History</h3>
-        <ul class="alert-history">
-            @foreach (var alert in weatherAlerts)
-            {
-                <li>
-                    <strong>@alert.City</strong> - @alert.Message
-                    <span class="alert-time">(@alert.Timestamp.ToLocalTime().ToString("g"))</span>
-                </li>
-            }
-        </ul>
-    }
+{
+    <h3 class="alert-history-title">📜 Weather Alerts History</h3>
+    <ul class="alert-history">
+        @foreach (var alert in weatherAlerts)
+        {
+            <li>
+                <strong>@alert.City</strong> - @alert.Message
+                <span class="alert-time">(@alert.Timestamp.ToLocalTime().ToString("g"))</span>
+                <button class="remove-alert-btn" @onclick="() => DeleteAlert(alert.Id)">🗑️</button>
+            </li>
+        }
+    </ul>
+}
 }
 
 @code {
@@ -152,12 +155,17 @@ else
     }
 
     private async Task RemoveFavorite(string cityName)
-    {
-        if (string.IsNullOrEmpty(userId)) return;
-        await MongoHelper.DeleteFavoriteCityAsync(cityName, userId);
-        favoriteWeatherList.RemoveAll(c => c.CityName == cityName);
-        StateHasChanged();
-    }
+{
+    if (string.IsNullOrEmpty(userId)) return;
+
+    await MongoHelper.DeleteFavoriteCityAsync(cityName, userId);
+    await MongoHelper.DeleteAlertsByCityAsync(userId, cityName); 
+
+    favoriteWeatherList.RemoveAll(c => c.CityName == cityName);
+    weatherAlerts.RemoveAll(a => a.City == cityName); //  Also remove from current alerts view
+
+    StateHasChanged();
+}
 
     private async Task RefreshData()
     {
@@ -203,7 +211,18 @@ else
 
     private bool IsDarkMode = false;
     private string ModeIcon => "images/contrast.png";
-    private void ToggleMode() => IsDarkMode = !IsDarkMode;
+
+private async Task ToggleMode()
+{
+    await JS.InvokeVoidAsync("toggleMode");
+}
+
+    private async Task DeleteAlert(string alertId)
+{
+    await MongoHelper.DeleteWeatherAlertAsync(alertId);
+    weatherAlerts.RemoveAll(a => a.Id == alertId);
+    StateHasChanged();
+}
 }
 
 <style>
