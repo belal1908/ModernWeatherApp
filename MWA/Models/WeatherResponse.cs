@@ -8,5 +8,6 @@ namespace MWA.Models
 
         public required string Main { get; set; }
         public required string Description { get; set; }
+        
     }
 }

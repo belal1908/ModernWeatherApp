@@ -56,7 +56,7 @@ builder.Services.AddSingleton(supabaseClient);
 
 builder.Services.AddScoped<WeatherService>();
 
-builder.Services.AddScoped<UserStateService>();
+builder.Services.AddSingleton<UserStateService>();
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddRazorComponents()

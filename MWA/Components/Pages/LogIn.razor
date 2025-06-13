@@ -4,6 +4,8 @@
 @using MWA.Services
 @inject AuthService authService
 @inject UserStateService userState
+@inject Supabase.Client supabase
+@using Supabase.Gotrue;
 
 <body class="login-page"></body>
 
@@ -29,30 +31,40 @@
     private bool isLoggingIn = false;
     private string? errorMessage;
 
-    public async Task OnLogin()
+    private async Task OnLogin()
+{
+    if (isLoggingIn) return;
+
+    if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
     {
-        if (isLoggingIn) return;
-
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
-        {
-            errorMessage = "Email and password are required.";
-            return;
-        }
-
-        isLoggingIn = true;
-        errorMessage = null;
-
-        string? result = await authService.SignIn(email.Trim(), password);
-
-        if (string.IsNullOrEmpty(result))
-        {
-            NavigationManager.NavigateTo("/weather");
-        }
-        else
-        {
-            errorMessage = result;
-        }
-
-        isLoggingIn = false;
+        errorMessage = "Email and password are required.";
+        return;
     }
+
+    isLoggingIn = true;
+    errorMessage = null;
+
+    string? result = await authService.SignIn(email.Trim(), password);
+
+    if (string.IsNullOrEmpty(result))
+    {
+        var session = supabase.Auth.CurrentSession;
+
+        if (session?.User != null)
+        {
+            // ✅ Set user session in UserStateService
+            userState.SetLoggedInUserId(session.User.Id);
+            userState.SetUser(session.User.Id, session.User.Email);
+            Console.WriteLine($"User session set: {session.User.Email} ({session.User.Id})");
+        }
+
+        NavigationManager.NavigateTo("/weather", forceLoad: true);
+    }
+    else
+    {
+        errorMessage = result;
+    }
+
+    isLoggingIn = false;
+}
 }

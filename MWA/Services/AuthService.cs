@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Supabase.Gotrue;
 
 namespace MWA.Services
 {
@@ -42,6 +43,11 @@ public class AuthService
     {
         await _supabaseClient.Auth.SignOut();
     }
+}
+
+public Session? GetCurrentSession()
+{
+    return _supabaseClient?.Auth.CurrentSession;
 }
 }
 

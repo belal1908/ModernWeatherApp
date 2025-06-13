@@ -12,7 +12,10 @@
 @inject Supabase.Client supabase
 @using Supabase.Gotrue;
 
+
 <h2 class="dashboard-title">Your Favorite Cities</h2>
+
+<button @onclick="RefreshData" class="refresh-btn">🔄 Refresh</button>
 
 @if (!isAuthenticated)
 {
@@ -37,6 +40,7 @@ else
                 <p>Temp: @item.Weather.Temperature°C</p>
                 <p>Humidity: @item.Weather.Humidity%</p>
                 <p>Wind: @item.Weather.WindSpeed m/s</p>
+                <button @onclick="() => RemoveFavorite(item.CityName)" class="remove-btn">Remove</button>
             </div>
         }
     </div>
@@ -56,24 +60,31 @@ else
         isAuthenticated = session?.User != null;
 
         if (!isAuthenticated || session.User?.Id == null)
-        {
-            isLoading = false;
-            return;
-        }
+{
+    Navigation.NavigateTo("/login", forceLoad: true);
+    return;
+}
 
         userId = session?.User?.Id ?? string.Empty;
 
         try
         {
             favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
+            Console.WriteLine($"Loaded {favoriteCities.Count} favorite cities");
             foreach (var fav in favoriteCities)
-            {
-                var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
-                if (weather != null)
-                {
-                    favoriteWeatherList.Add((fav.CityName, weather));
-                }
-            }
+{
+    var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
+    Console.WriteLine($"Fetched weather for {fav.CityName}: {weather?.Main} | {weather?.Temperature}");
+
+    if (weather != null)
+    {
+        favoriteWeatherList.Add((fav.CityName, weather));
+    }
+    else
+    {
+        Console.WriteLine($"⚠️ Weather data is null for {fav.CityName}");
+    }
+}
         }
         catch (Exception ex)
         {
@@ -84,4 +95,31 @@ else
             isLoading = false;
         }
     }
+
+
+    private async Task RemoveFavorite(string cityName)
+{
+    if (string.IsNullOrEmpty(userId)) return;
+
+    await MongoHelper.DeleteFavoriteCityAsync(cityName, userId);
+    favoriteWeatherList.RemoveAll(c => c.CityName == cityName);
+    StateHasChanged();
+}
+
+    private async Task RefreshData()
+{
+    favoriteWeatherList.Clear();
+    if (!string.IsNullOrEmpty(userId))
+    {
+        favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
+        foreach (var fav in favoriteCities)
+        {
+            var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
+            if (weather != null)
+            {
+                favoriteWeatherList.Add((fav.CityName, weather));
+            }
+        }
+    }
+}
 }

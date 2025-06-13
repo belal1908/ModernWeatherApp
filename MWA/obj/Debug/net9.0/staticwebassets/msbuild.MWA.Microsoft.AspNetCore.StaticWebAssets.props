@@ -840,8 +840,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>9xmpg1nxx6</Fingerprint>
-      <Integrity>TaRg8Kb1YW59ZbuGdJxS54Aek5AZhHwXwcQ+bEfyNsw=</Integrity>
+      <Fingerprint>eqqwf0vns6</Fingerprint>
+      <Integrity>qpEZH1F/jR2i02mqLL7uV1cfebg05s/NMi8sMGyNp8s=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\dashboard.css'))</OriginalItemSpec>
@@ -894,8 +894,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>kt2k8gmpsj</Fingerprint>
-      <Integrity>SDNdXsXa/IZn1LAHb3le4LCTItmf6z2tovmB1lPMY18=</Integrity>
+      <Fingerprint>dv3tdokegi</Fingerprint>
+      <Integrity>J/rRyM4EmgrydxPgUZPp1Duc2Rc9ArLUOPZGPYck8C0=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\weather.css'))</OriginalItemSpec>

@@ -87,14 +87,10 @@
     </div>
 
     <div class="favorites" style="margin-top: 30px; text-align: center;">
-        <button @onclick="SaveCurrentCityToFavorites" class="city-btn"><img src="images/favorite.png" alt=""></button>
-        <ul>
-            @foreach (var favCity in favoriteCities)
-            {
-                <li style="color: white;">@favCity.CityName <button @onclick="() => DeleteFavoriteCity(favCity.CityName)" class="city-btn">Remove</button></li>
-            }
-        </ul>
-    </div>
+    <button @onclick="SaveCurrentCityToFavorites" class="city-btn">
+        <img src="images/favorite.png" alt="Favorite this city">
+    </button>
+</div>
 </div>
 
 @code {
@@ -130,7 +126,7 @@
         var alreadyExists = await mongoHelper.IsCityFavoritedAsync(cityName, userId);
         if (alreadyExists)
         {
-            Snackbar.Add("City already in favorites.", Severity.Info);
+            Snackbar.Add("City already in favorites.", Severity.Success);
             return;
         }
 
@@ -141,10 +137,16 @@
             WeatherDetails = null // To be filled if want to store more info later in the future
         };
 
-        await mongoHelper.AddFavoriteCityAsync(favoriteCity);
-        favoriteCities.Add(favoriteCity);
-        Snackbar.Add("City added to favorites!", Severity.Success);
-        StateHasChanged();
+        bool added = await mongoHelper.AddFavoriteCityAsync(favoriteCity);
+if (added)
+{
+    favoriteCities.Add(favoriteCity);
+    Snackbar.Add("City added to favorites!", Severity.Success);
+}
+else
+{
+    Snackbar.Add("Failed to add favorite city. It may already exist.", Severity.Warning);
+}
     }
 
     private async Task DeleteFavoriteCity(string cityName)
