@@ -1,4 +1,15 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿@using MWA.Services
+@inject UserStateService UserSessionService
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
+
+@if (UserSessionService.IsAuthenticated)
+{
+    <button @onclick="Logout">Logout</button>
+}
+
+
+<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">Weather Forecast</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
@@ -48,5 +59,12 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task Logout()
+    {
+        await AuthService.Logout();
+        UserSessionService.ClearUser();
+        NavigationManager.NavigateTo("/login", forceLoad: true);
     }
 }

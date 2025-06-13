@@ -35,5 +35,14 @@ public class AuthService
         var response = await _supabaseClient.Auth.SignUp(email, password);
         return response.User != null;
     }
+
+    public async Task Logout()
+{
+    if (_supabaseClient != null)
+    {
+        await _supabaseClient.Auth.SignOut();
+    }
 }
+}
+
 }

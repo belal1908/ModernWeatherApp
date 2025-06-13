@@ -7,6 +7,8 @@
 @using MudBlazor
 @inject MongoHelper mongoHelper
 @inject UserStateService UserSessionService
+@inject AuthService authService
+@inject NavigationManager NavigationManager
 @inject IJSRuntime JS
 @inject ISnackbar Snackbar
 @inject Supabase.Client supabase
@@ -16,6 +18,8 @@
 <body 
     class="weather-page"> 
 </body>
+
+<button class="logout-button" @onclick="Logout">Logout</button>
 
 <button class="mode-toggle" onclick="toggleMode()">
     <img src="images/contrast.png">
@@ -151,6 +155,13 @@
         await mongoHelper.DeleteFavoriteCityAsync(cityName, userId);
         favoriteCities.RemoveAll(c => c.CityName == cityName);
         Snackbar.Add("City removed from favorites.", Severity.Warning);
+    }
+
+    private async Task Logout()
+    {
+        await authService.Logout();           // Supabase logout
+        UserSessionService.ClearUser();                // Clear user session locally
+        NavigationManager.NavigateTo("/login", forceLoad: true); // Redirect to login
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
