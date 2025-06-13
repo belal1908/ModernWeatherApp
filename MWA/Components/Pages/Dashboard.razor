@@ -7,10 +7,10 @@
 @using Microsoft.AspNetCore.Components.Authorization
 @inject WeatherService WeatherService
 @inject MongoHelper MongoHelper
+@inject AlertService AlertService
 @inject NavigationManager Navigation
 @inject AuthenticationStateProvider AuthProvider
 @inject Supabase.Client supabase
-@inject AlertService AlertService
 @using Supabase.Gotrue;
 
 <button class="mode-toggle" @onclick="ToggleMode">
@@ -51,7 +51,13 @@ else
 
             <div class="weather-card @themeClass">
                 <img src="images/@(item.Weather.Main.ToLower()).png" alt="@item.Weather.Description" width="40" />
-                <h3>@item.CityName</h3>
+                <h3>
+                    @item.CityName
+                    @if (item.Weather.Temperature > 35 || item.Weather.WindSpeed > 25)
+                    {
+                        <span class="alert-badge">⚠️ Alert</span>
+                    }
+                </h3>
                 <p>Temp: @(showCelsius ? item.Weather.Temperature : (item.Weather.Temperature * 9 / 5 + 32))@(showCelsius ? "°C" : "°F")</p>
                 <p>@item.Weather.Main - @item.Weather.Description</p>
                 <p>Humidity: @item.Weather.Humidity%</p>
@@ -60,14 +66,28 @@ else
             </div>
         }
     </div>
+
+    @if (weatherAlerts.Count > 0)
+    {
+        <h3 class="alert-history-title">📜 Weather Alerts History</h3>
+        <ul class="alert-history">
+            @foreach (var alert in weatherAlerts)
+            {
+                <li>
+                    <strong>@alert.City</strong> - @alert.Message
+                    <span class="alert-time">(@alert.Timestamp.ToLocalTime().ToString("g"))</span>
+                </li>
+            }
+        </ul>
+    }
 }
 
 @code {
     private bool isAuthenticated = false;
     private bool isLoading = true;
-
     private string userId = string.Empty;
     private List<FavoriteCity> favoriteCities = new();
+    private List<AlertLog> weatherAlerts = new();
     private List<(string CityName, WeatherResponse Weather)> favoriteWeatherList = new();
 
     protected override async Task OnInitializedAsync()
@@ -86,7 +106,8 @@ else
         try
         {
             favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
-            Console.WriteLine($"Loaded {favoriteCities.Count} favorite cities");
+            weatherAlerts = await MongoHelper.GetWeatherAlertsAsync(userId);
+
             foreach (var fav in favoriteCities)
             {
                 var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
@@ -98,11 +119,20 @@ else
 
                     if (weather.Temperature > 35 || weather.WindSpeed > 25)
                     {
+                        var alertMessage = $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s";
+
                         await AlertService.SendAlertEmailAsync(
-                            toEmail: "belalafzal19@gmail.com", // Replace with actual user email
+                            toEmail: "belalafzal19@gmail.com",
                             city: fav.CityName,
-                            alertMessage: $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s"
-                        );
+                            alertMessage: alertMessage);
+
+                        await MongoHelper.AddWeatherAlertAsync(new AlertLog
+                        {
+                            UserId = userId,
+                            City = fav.CityName,
+                            Message = alertMessage,
+                            Timestamp = DateTime.UtcNow
+                        });
                     }
                 }
                 else
@@ -124,7 +154,6 @@ else
     private async Task RemoveFavorite(string cityName)
     {
         if (string.IsNullOrEmpty(userId)) return;
-
         await MongoHelper.DeleteFavoriteCityAsync(cityName, userId);
         favoriteWeatherList.RemoveAll(c => c.CityName == cityName);
         StateHasChanged();
@@ -133,9 +162,13 @@ else
     private async Task RefreshData()
     {
         favoriteWeatherList.Clear();
+        weatherAlerts.Clear();
+
         if (!string.IsNullOrEmpty(userId))
         {
             favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
+            weatherAlerts = await MongoHelper.GetWeatherAlertsAsync(userId);
+
             foreach (var fav in favoriteCities)
             {
                 var weather = await WeatherService.GetWeatherDataAsync(fav.CityName);
@@ -145,11 +178,20 @@ else
 
                     if (weather.Temperature > 35 || weather.WindSpeed > 25)
                     {
+                        var alertMessage = $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s";
+
                         await AlertService.SendAlertEmailAsync(
-                            toEmail: "your-user-email@example.com",
+                            toEmail: "belalafzal19@gmail.com",
                             city: fav.CityName,
-                            alertMessage: $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s"
-                        );
+                            alertMessage: alertMessage);
+
+                        await MongoHelper.AddWeatherAlertAsync(new AlertLog
+                        {
+                            UserId = userId,
+                            City = fav.CityName,
+                            Message = alertMessage,
+                            Timestamp = DateTime.UtcNow
+                        });
                     }
                 }
             }
@@ -157,19 +199,11 @@ else
     }
 
     private bool showCelsius = true;
-
-    private void ToggleTempUnit()
-    {
-        showCelsius = !showCelsius;
-    }
+    private void ToggleTempUnit() => showCelsius = !showCelsius;
 
     private bool IsDarkMode = false;
     private string ModeIcon => "images/contrast.png";
-
-    private void ToggleMode()
-    {
-        IsDarkMode = !IsDarkMode;
-    }
+    private void ToggleMode() => IsDarkMode = !IsDarkMode;
 }
 
 <style>

@@ -220,3 +220,38 @@ body {
     filter: brightness(1.2) contrast(1.1);
 }
 
+.alert-badge {
+    background-color: #ff6b6b;
+    color: white;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    border-radius: 6px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.alert-history-title {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    text-align: center;
+    color: #fdd835;
+}
+
+.alert-history {
+    list-style-type: none;
+    padding: 0 2rem;
+    margin-top: 1rem;
+    color: #f54949;
+}
+
+.alert-history li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #555;
+}
+
+.alert-time {
+    font-size: 0.85rem;
+    color: #f84848;
+    margin-left: 10px;
+}

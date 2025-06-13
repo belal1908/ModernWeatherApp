@@ -87,5 +87,22 @@ namespace MWA.DBConnections
             );
             await collection.DeleteOneAsync(filter);
         }
+
+
+
+        public async Task AddWeatherAlertAsync(AlertLog alert)
+{
+    var collection = _database.GetCollection<AlertLog>("WeatherAlerts");
+    await collection.InsertOneAsync(alert);
+}
+
+public async Task<List<AlertLog>> GetWeatherAlertsAsync(string userId)
+{
+    var collection = _database.GetCollection<AlertLog>("WeatherAlerts");
+    var filter = Builders<AlertLog>.Filter.Eq("UserId", userId);
+    return await collection.Find(filter)
+        .SortByDescending(a => a.Timestamp)
+        .ToListAsync();
+}
     }
 }
