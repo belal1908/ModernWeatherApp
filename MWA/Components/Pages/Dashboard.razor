@@ -13,9 +13,17 @@
 @using Supabase.Gotrue;
 
 
+<button class="mode-toggle" onclick="toggleMode()">
+    <img src="images/contrast.png">
+</button>
+
 <h2 class="dashboard-title">Your Favorite Cities</h2>
 
 <button @onclick="RefreshData" class="refresh-btn">🔄 Refresh</button>
+
+<button @onclick="ToggleTempUnit" class="unit-toggle-btn">
+    @((showCelsius ? "Switch to °F" : "Switch to °C"))
+</button>
 
 @if (!isAuthenticated)
 {
@@ -34,8 +42,11 @@ else
     <div class="dashboard-grid">
         @foreach (var item in favoriteWeatherList)
         {
+            
             <div class="weather-card">
+            <img src="images/@(item.Weather.Main.ToLower()).png" alt="@item.Weather.Description" width="40" />
                 <h3>@item.CityName</h3>
+                <p>Temp: @(showCelsius ? item.Weather.Temperature : (item.Weather.Temperature * 9/5 + 32))@(showCelsius ? "°C" : "°F")</p>
                 <p>@item.Weather.Main - @item.Weather.Description</p>
                 <p>Temp: @item.Weather.Temperature°C</p>
                 <p>Humidity: @item.Weather.Humidity%</p>
@@ -53,6 +64,8 @@ else
     private string userId = string.Empty;
     private List<FavoriteCity> favoriteCities = new();
     private List<(string CityName, WeatherResponse Weather)> favoriteWeatherList = new();
+
+    
 
     protected override async Task OnInitializedAsync()
     {
@@ -122,4 +135,33 @@ else
         }
     }
 }
+
+private bool showCelsius = true;
+
+private void ToggleTempUnit()
+{
+    showCelsius = !showCelsius;
 }
+
+private bool IsDarkMode = false;
+
+    private string ModeIcon => "images/contrast.png"; // You can swap icons if needed
+
+    private void ToggleMode()
+    {
+        IsDarkMode = !IsDarkMode;
+    }
+}
+
+<script>
+    function toggleMode() {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem("dark-mode", document.body.classList.contains("dark-mode"));
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        if (localStorage.getItem("dark-mode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+    });
+</script>
