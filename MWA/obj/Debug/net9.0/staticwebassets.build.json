@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "tJOMIf381UPmZ4HQ2sIQSeUcOFo3NCZ5VizuRsNzvKk=",
+  "Hash": "8dqCL8NCcNCLcoOx8g1dMkpKUvucX5QiujvUvqlW+Q0=",
   "Source": "MWA",
   "BasePath": "_content/MWA",
   "Mode": "Default",
@@ -290,12 +290,12 @@
       "OriginalItemSpec": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/bootstrap-reboot.min.css.map"
     },
     {
-      "Identity": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-lv76jv8mb2.gz",
+      "Identity": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-1w7y81sfvz.gz",
       "SourceId": "MWA",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/MWA",
-      "RelativePath": "lib/bootstrap/dist/js/scripts#[.{fingerprint=lv76jv8mb2}]?.js.gz",
+      "RelativePath": "lib/bootstrap/dist/js/scripts#[.{fingerprint=1w7y81sfvz}]?.js.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -304,8 +304,8 @@
       "RelatedAsset": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/scripts.js",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "xahq5a158x",
-      "Integrity": "50gQ6aACHff91L1+ZbwCR/XiD5KjdLMiw8he4MYzLic=",
+      "Fingerprint": "x1yic6a6b3",
+      "Integrity": "G/8bS5IwhSuNW8kHo8kEytst09ZLmcBVjM6Z4LEN0Zs=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/scripts.js"
@@ -920,12 +920,12 @@
       "OriginalItemSpec": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/bootstrap.min.js"
     },
     {
-      "Identity": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-fg2uiikhsz.gz",
+      "Identity": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-pmcsq8nee0.gz",
       "SourceId": "MWA",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/",
       "BasePath": "_content/MWA",
-      "RelativePath": "lib/bootstrap/dist/css/dashboard#[.{fingerprint=fg2uiikhsz}]?.css.gz",
+      "RelativePath": "lib/bootstrap/dist/css/dashboard#[.{fingerprint=pmcsq8nee0}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -934,8 +934,8 @@
       "RelatedAsset": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/dashboard.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "vkzv44svwb",
-      "Integrity": "IaZcgDfV3HvOKItE/JIhSzj4aY7gwvckWuHg0vg9OKc=",
+      "Fingerprint": "gdwa2d1luf",
+      "Integrity": "nFdWmR4hVx2VwqDdJwolQZfCkPgAHhCg+xxiF806geo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/dashboard.css"
@@ -2236,8 +2236,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "fg2uiikhsz",
-      "Integrity": "78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w=",
+      "Fingerprint": "pmcsq8nee0",
+      "Integrity": "D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/css/dashboard.css"
@@ -2572,8 +2572,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "lv76jv8mb2",
-      "Integrity": "YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s=",
+      "Fingerprint": "1w7y81sfvz",
+      "Integrity": "j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/lib/bootstrap/dist/js/scripts.js"
@@ -13867,12 +13867,12 @@
     },
     {
       "Route": "lib/bootstrap/dist/css/dashboard.css",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-fg2uiikhsz.gz",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-pmcsq8nee0.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000687285223"
+          "Quality": "0.000587199060"
         }
       ],
       "ResponseHeaders": [
@@ -13882,15 +13882,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1454"
+          "Value": "1702"
         },
         {
           "Name": "ETag",
-          "Value": "\"IaZcgDfV3HvOKItE/JIhSzj4aY7gwvckWuHg0vg9OKc=\""
+          "Value": "\"nFdWmR4hVx2VwqDdJwolQZfCkPgAHhCg+xxiF806geo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 05:10:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13910,13 +13910,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w=\""
+          "Value": "W/\"D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w="
+          "Value": "sha256-D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE="
         }
       ]
     },
@@ -13931,7 +13931,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5230"
+          "Value": "6436"
         },
         {
           "Name": "Content-Type",
@@ -13939,11 +13939,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w=\""
+          "Value": "\"D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 05:10:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13953,13 +13953,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w="
+          "Value": "sha256-D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE="
         }
       ]
     },
     {
       "Route": "lib/bootstrap/dist/css/dashboard.css.gz",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-fg2uiikhsz.gz",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-pmcsq8nee0.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -13968,7 +13968,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1454"
+          "Value": "1702"
         },
         {
           "Name": "Content-Type",
@@ -13976,11 +13976,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"IaZcgDfV3HvOKItE/JIhSzj4aY7gwvckWuHg0vg9OKc=\""
+          "Value": "\"nFdWmR4hVx2VwqDdJwolQZfCkPgAHhCg+xxiF806geo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 05:10:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -13998,18 +13998,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-IaZcgDfV3HvOKItE/JIhSzj4aY7gwvckWuHg0vg9OKc="
+          "Value": "sha256-nFdWmR4hVx2VwqDdJwolQZfCkPgAHhCg+xxiF806geo="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/dashboard.fg2uiikhsz.css",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-fg2uiikhsz.gz",
+      "Route": "lib/bootstrap/dist/css/dashboard.pmcsq8nee0.css",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-pmcsq8nee0.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.000687285223"
+          "Quality": "0.000587199060"
         }
       ],
       "ResponseHeaders": [
@@ -14019,15 +14019,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1454"
+          "Value": "1702"
         },
         {
           "Name": "ETag",
-          "Value": "\"IaZcgDfV3HvOKItE/JIhSzj4aY7gwvckWuHg0vg9OKc=\""
+          "Value": "\"nFdWmR4hVx2VwqDdJwolQZfCkPgAHhCg+xxiF806geo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 05:10:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14047,13 +14047,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w=\""
+          "Value": "W/\"D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "fg2uiikhsz"
+          "Value": "pmcsq8nee0"
         },
         {
           "Name": "label",
@@ -14061,12 +14061,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w="
+          "Value": "sha256-D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/dashboard.fg2uiikhsz.css",
+      "Route": "lib/bootstrap/dist/css/dashboard.pmcsq8nee0.css",
       "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/dashboard.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -14076,7 +14076,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "5230"
+          "Value": "6436"
         },
         {
           "Name": "Content-Type",
@@ -14084,11 +14084,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w=\""
+          "Value": "\"D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 05:10:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14098,7 +14098,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "fg2uiikhsz"
+          "Value": "pmcsq8nee0"
         },
         {
           "Name": "label",
@@ -14106,13 +14106,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-78FJJWn0XwobQCwLXC8PaVIN82od84hmHFWMJ2IPA0w="
+          "Value": "sha256-D2ecBtSi1ay/edhxOTp0aEz9/P/9vFn3gs4WFurcXsE="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/css/dashboard.fg2uiikhsz.css.gz",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-fg2uiikhsz.gz",
+      "Route": "lib/bootstrap/dist/css/dashboard.pmcsq8nee0.css.gz",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/pc8388cw5w-pmcsq8nee0.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -14121,7 +14121,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1454"
+          "Value": "1702"
         },
         {
           "Name": "Content-Type",
@@ -14129,11 +14129,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"IaZcgDfV3HvOKItE/JIhSzj4aY7gwvckWuHg0vg9OKc=\""
+          "Value": "\"nFdWmR4hVx2VwqDdJwolQZfCkPgAHhCg+xxiF806geo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 05:10:33 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -14151,7 +14151,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "fg2uiikhsz"
+          "Value": "pmcsq8nee0"
         },
         {
           "Name": "label",
@@ -14159,7 +14159,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-IaZcgDfV3HvOKItE/JIhSzj4aY7gwvckWuHg0vg9OKc="
+          "Value": "sha256-nFdWmR4hVx2VwqDdJwolQZfCkPgAHhCg+xxiF806geo="
         }
       ]
     },
@@ -18634,13 +18634,13 @@
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/scripts.js",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-lv76jv8mb2.gz",
+      "Route": "lib/bootstrap/dist/js/scripts.1w7y81sfvz.js",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-1w7y81sfvz.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.007575757576"
+          "Quality": "0.002645502646"
         }
       ],
       "ResponseHeaders": [
@@ -18650,19 +18650,19 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "131"
+          "Value": "377"
         },
         {
           "Name": "ETag",
-          "Value": "\"50gQ6aACHff91L1+ZbwCR/XiD5KjdLMiw8he4MYzLic=\""
+          "Value": "\"G/8bS5IwhSuNW8kHo8kEytst09ZLmcBVjM6Z4LEN0Zs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 04:46:38 GMT"
         },
         {
           "Name": "Cache-Control",
-          "Value": "no-cache"
+          "Value": "max-age=31536000, immutable"
         },
         {
           "Name": "Content-Encoding",
@@ -18678,18 +18678,26 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s=\""
+          "Value": "W/\"j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ=\""
         }
       ],
       "EndpointProperties": [
         {
+          "Name": "fingerprint",
+          "Value": "1w7y81sfvz"
+        },
+        {
+          "Name": "label",
+          "Value": "lib/bootstrap/dist/js/scripts.js"
+        },
+        {
           "Name": "integrity",
-          "Value": "sha256-YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s="
+          "Value": "sha256-j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/scripts.js",
+      "Route": "lib/bootstrap/dist/js/scripts.1w7y81sfvz.js",
       "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/scripts.js",
       "Selectors": [],
       "ResponseHeaders": [
@@ -18699,7 +18707,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "135"
+          "Value": "989"
         },
         {
           "Name": "Content-Type",
@@ -18707,121 +18715,21 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s=\""
+          "Value": "\"j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/js/scripts.js.gz",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-lv76jv8mb2.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "131"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"50gQ6aACHff91L1+ZbwCR/XiD5KjdLMiw8he4MYzLic=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "no-cache"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "integrity",
-          "Value": "sha256-50gQ6aACHff91L1+ZbwCR/XiD5KjdLMiw8he4MYzLic="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/js/scripts.lv76jv8mb2.js",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-lv76jv8mb2.gz",
-      "Selectors": [
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip",
-          "Quality": "0.007575757576"
-        }
-      ],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "131"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"50gQ6aACHff91L1+ZbwCR/XiD5KjdLMiw8he4MYzLic=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 04:46:38 GMT"
         },
         {
           "Name": "Cache-Control",
           "Value": "max-age=31536000, immutable"
-        },
-        {
-          "Name": "Content-Encoding",
-          "Value": "gzip"
-        },
-        {
-          "Name": "Vary",
-          "Value": "Content-Encoding"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "W/\"YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lv76jv8mb2"
+          "Value": "1w7y81sfvz"
         },
         {
           "Name": "label",
@@ -18829,13 +18737,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s="
+          "Value": "sha256-j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ="
         }
       ]
     },
     {
-      "Route": "lib/bootstrap/dist/js/scripts.lv76jv8mb2.js",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/scripts.js",
+      "Route": "lib/bootstrap/dist/js/scripts.1w7y81sfvz.js.gz",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-1w7y81sfvz.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -18844,7 +18752,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "135"
+          "Value": "377"
         },
         {
           "Name": "Content-Type",
@@ -18852,56 +18760,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s=\""
+          "Value": "\"G/8bS5IwhSuNW8kHo8kEytst09ZLmcBVjM6Z4LEN0Zs=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
-        },
-        {
-          "Name": "Cache-Control",
-          "Value": "max-age=31536000, immutable"
-        }
-      ],
-      "EndpointProperties": [
-        {
-          "Name": "fingerprint",
-          "Value": "lv76jv8mb2"
-        },
-        {
-          "Name": "label",
-          "Value": "lib/bootstrap/dist/js/scripts.js"
-        },
-        {
-          "Name": "integrity",
-          "Value": "sha256-YTxawobps31wH5+Ec2juAFGv5Yzz0pE9LZ08H8PBU1s="
-        }
-      ]
-    },
-    {
-      "Route": "lib/bootstrap/dist/js/scripts.lv76jv8mb2.js.gz",
-      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-lv76jv8mb2.gz",
-      "Selectors": [],
-      "ResponseHeaders": [
-        {
-          "Name": "Accept-Ranges",
-          "Value": "bytes"
-        },
-        {
-          "Name": "Content-Length",
-          "Value": "131"
-        },
-        {
-          "Name": "Content-Type",
-          "Value": "text/javascript"
-        },
-        {
-          "Name": "ETag",
-          "Value": "\"50gQ6aACHff91L1+ZbwCR/XiD5KjdLMiw8he4MYzLic=\""
-        },
-        {
-          "Name": "Last-Modified",
-          "Value": "Fri, 13 Jun 2025 20:11:37 GMT"
+          "Value": "Sat, 14 Jun 2025 04:46:38 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -18919,7 +18782,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "lv76jv8mb2"
+          "Value": "1w7y81sfvz"
         },
         {
           "Name": "label",
@@ -18927,7 +18790,144 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-50gQ6aACHff91L1+ZbwCR/XiD5KjdLMiw8he4MYzLic="
+          "Value": "sha256-G/8bS5IwhSuNW8kHo8kEytst09ZLmcBVjM6Z4LEN0Zs="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/js/scripts.js",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-1w7y81sfvz.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002645502646"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "377"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"G/8bS5IwhSuNW8kHo8kEytst09ZLmcBVjM6Z4LEN0Zs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 14 Jun 2025 04:46:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/js/scripts.js",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/js/scripts.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "989"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 14 Jun 2025 04:46:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-j3dJTS6iGOWHlFKBPwHyvjt1yo1o1vOj9gVIr7ZSeXQ="
+        }
+      ]
+    },
+    {
+      "Route": "lib/bootstrap/dist/js/scripts.js.gz",
+      "AssetFile": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/compressed/9s3n0xtix3-1w7y81sfvz.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "377"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"G/8bS5IwhSuNW8kHo8kEytst09ZLmcBVjM6Z4LEN0Zs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Sat, 14 Jun 2025 04:46:38 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-G/8bS5IwhSuNW8kHo8kEytst09ZLmcBVjM6Z4LEN0Zs="
         }
       ]
     },

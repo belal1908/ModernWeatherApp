@@ -324,3 +324,13 @@ body.dark-mode {
 .save-btn:hover {
     background-color: #1565c0;
 }
+
+.alert-toggle {
+    margin: 1rem auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    gap: 0.5rem;
+    color: #444;
+}

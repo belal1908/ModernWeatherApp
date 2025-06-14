@@ -37,6 +37,11 @@
 <button @onclick="RefreshData" class="refresh-btn">🔄 Refresh</button>
 <button @onclick="ToggleTempUnit" class="temp-toggle-btn">@((showCelsius ? "Switch to °F" : "Switch to °C"))</button>
 
+<label class="alert-toggle">
+    <input type="checkbox" @bind-value="emailAlertsEnabled" @bind-value:event="onchange" />
+    <span>Receive Email Alerts</span>
+</label>
+
 @if (!isAuthenticated)
 {
     <p class="login-warning">Please log in first to use Dashboard.</p>
@@ -108,7 +113,7 @@ else
 
 @code {
     private bool isAuthenticated = false;
-
+    private bool emailAlertsEnabled = true;
     private string errorMessage = string.Empty;
     private bool isLoading = true;
     private string userId = string.Empty;
@@ -129,11 +134,16 @@ else
 
         userId = session.User.Id;
 
+
         var pref = await MongoHelper.GetUserAlertPreferenceAsync(userId);
+
+        emailAlertsEnabled = pref.EmailAlertsEnabled;
+
 if (pref != null)
 {
     tempThreshold = pref.TempThreshold;
     windThreshold = pref.WindThreshold;
+    emailAlertsEnabled = pref.EmailAlertsEnabled; 
 }
 
         try
@@ -157,18 +167,21 @@ if (pref != null)
                     {
                         var alertMessage = $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s";
 
-                        await AlertService.SendAlertEmailAsync(
-                            toEmail: "belalafzal19@gmail.com",
-                            city: fav.CityName,
-                            alertMessage: alertMessage);
+                        if (emailAlertsEnabled)
+                            {
+                                await AlertService.SendAlertEmailAsync(
+                                    toEmail: "belalafzal19@gmail.com",
+                                    city: fav.CityName,
+                                    alertMessage: alertMessage);
+                            }
 
-                        await MongoHelper.AddWeatherAlertAsync(new AlertLog
-                        {
-                            UserId = userId,
-                            City = fav.CityName,
-                            Message = alertMessage,
-                            Timestamp = DateTime.UtcNow
-                        });
+                            await MongoHelper.AddWeatherAlertAsync(new AlertLog
+                            {
+                                UserId = userId,
+                                City = fav.CityName,
+                                Message = alertMessage,
+                                Timestamp = DateTime.UtcNow
+                            });
                     }
                 }
                 else
@@ -186,7 +199,21 @@ if (pref != null)
         {
             isLoading = false;
         }
+        
     }
+
+    private async Task UpdateEmailAlertPreference(ChangeEventArgs e)
+{
+    var newValue = (bool)e.Value;
+    emailAlertsEnabled = newValue;
+
+    var pref = await MongoHelper.GetUserAlertPreferenceAsync(userId) ?? new UserAlertPreference { UserId = userId };
+    pref.EmailAlertsEnabled = emailAlertsEnabled;
+    pref.TempThreshold = tempThreshold;
+    pref.WindThreshold = windThreshold;
+
+    await MongoHelper.SetUserAlertPreferenceAsync(pref);
+}
 
     private async Task RemoveFavorite(string cityName)
 {
@@ -222,18 +249,21 @@ if (pref != null)
                     {
                         var alertMessage = $"⚠️ Severe weather in {fav.CityName}: {weather.Temperature}°C, Wind: {weather.WindSpeed} m/s";
 
+                        if (emailAlertsEnabled)
+                    {
                         await AlertService.SendAlertEmailAsync(
                             toEmail: "belalafzal19@gmail.com",
                             city: fav.CityName,
                             alertMessage: alertMessage);
+                    }
 
-                        await MongoHelper.AddWeatherAlertAsync(new AlertLog
-                        {
-                            UserId = userId,
-                            City = fav.CityName,
-                            Message = alertMessage,
-                            Timestamp = DateTime.UtcNow
-                        });
+                    await MongoHelper.AddWeatherAlertAsync(new AlertLog
+                    {
+                        UserId = userId,
+                        City = fav.CityName,
+                        Message = alertMessage,
+                        Timestamp = DateTime.UtcNow
+                    });
                     }
                 }
             }
