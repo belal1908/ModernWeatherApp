@@ -43,7 +43,9 @@
 }
 else if (isLoading)
 {
-    <p>Loading your saved cities...</p>
+    <div class="loading-state">
+        <p>⏳ Fetching weather and alerts...</p>
+    </div>
 }
 else if (favoriteWeatherList.Count == 0)
 {
@@ -98,8 +100,16 @@ else
 }
 }
 
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="error-message">@errorMessage</div>
+}
+
 @code {
     private bool isAuthenticated = false;
+
+    private string errorMessage = string.Empty;
     private bool isLoading = true;
     private string userId = string.Empty;
     private List<FavoriteCity> favoriteCities = new();
@@ -128,6 +138,9 @@ if (pref != null)
 
         try
         {
+            isLoading = true;
+            errorMessage = string.Empty;    
+
             favoriteCities = await MongoHelper.GetFavoriteCitiesAsync(userId);
             weatherAlerts = await MongoHelper.GetWeatherAlertsAsync(userId);
 
@@ -166,6 +179,7 @@ if (pref != null)
         }
         catch (Exception ex)
         {
+            errorMessage = "⚠️ Unable to load your dashboard. Please try again later.";
             Console.WriteLine($"Error loading favorite cities: {ex.Message}");
         }
         finally
