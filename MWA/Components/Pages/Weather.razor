@@ -291,11 +291,16 @@ else
     }
 
     function resetApp() {
-        searchBox.value = "";
-        document.querySelector(".weather").style.display = "none";
-        document.querySelector(".error").style.display = "none";
-        forecastSection.style.display = "none";
-    }
+    if (searchBox) searchBox.value = "";
+
+    const weatherElement = document.querySelector(".weather");
+    if (weatherElement) weatherElement.style.display = "none";
+
+    const errorElement = document.querySelector(".error");
+    if (errorElement) errorElement.style.display = "none";
+
+    if (forecastSection) forecastSection.style.display = "none";
+}
 
     document.addEventListener("DOMContentLoaded", () => {
     @* const searchBox = document.querySelector(".search input");
