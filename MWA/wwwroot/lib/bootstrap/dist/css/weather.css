@@ -7,20 +7,6 @@
     background: #222222; 
 }
 
-.mode-toggle img {
-    width: 35px;
-}
-
-.mode-toggle {
-    border: 0;
-    outline: 0;
-    background: #f4f4f4;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    justify-content: center;
-}
 
     .card {
         width: 100%;
@@ -174,20 +160,42 @@
         width: 25px;
     }
 
-    .logout-button {
-    position: absolute;
-    bottom: 1rem;
-    left: 1rem;
+.logout-button {
+    position: fixed;
+    top: 100px;
+    right: 20px;
     padding: 0.5rem 1rem;
-    background-color: #f44336; /* red background */
+    background-color: #b51e13;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     z-index: 1000;
     transition: background-color 0.3s ease;
 }
 
 .logout-button:hover {
-    background-color: #d32f2f; /* darker red on hover */
+    background-color: #ee3737;
+}
+
+.mode-toggle {
+    position: fixed;
+    top: 80px;
+    right: 90px; /* adjust left of logout button */
+    border: 0;
+    outline: 0;
+    background: #f4f4f4;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.mode-toggle img {
+    width: 24px;
 }

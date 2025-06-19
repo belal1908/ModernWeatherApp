@@ -19,11 +19,12 @@
     class="weather-page"> 
 </body>
 
-<button class="logout-button" @onclick="Logout">Logout</button>
-
-<button class="mode-toggle" onclick="toggleMode()">
-    <img src="images/contrast.png">
-</button>
+<div class="top-buttons-container">
+    <button class="mode-toggle" onclick="toggleMode()">
+        <img src="images/contrast.png" />
+    </button>
+    <button class="logout-button" @onclick="Logout">Logout</button>
+</div>
 
  <div class="card">
         <div class="search">
