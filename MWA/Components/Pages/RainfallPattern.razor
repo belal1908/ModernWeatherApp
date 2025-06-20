@@ -1,0 +1,181 @@
+@page "/rainfall-pattern"
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+@inject IConfiguration Configuration
+@inject IJSRuntime JS
+
+<PageTitle>Rainfall / Humidity Patterns</PageTitle>
+
+<h2 class="text-center text-2xl font-bold mt-6">🌧️ Rainfall & Humidity Pattern Analysis</h2>
+
+<div class="trend-container">
+    <div class="trend-input-group">
+        <input @bind="city" placeholder="Enter City" class="trend-input" />
+        <input type="date" @bind="startDate" class="trend-date" />
+        <input type="date" @bind="endDate" class="trend-date" />
+        <button @onclick="FetchTrend" class="trend-button">Analyze</button>
+    </div>
+
+    @if (isLoading)
+    {
+        <p class="loading-text">Loading data...</p>
+    }
+    @if (!string.IsNullOrWhiteSpace(errorMessage))
+    {
+        <p class="error-text">@errorMessage</p>
+    }
+
+    <div class="trend-chart-container">
+        <canvas id="rainChart" width="800" height="400"></canvas>
+    </div>
+</div>
+
+@code {
+    private string city = "Delhi";
+    private DateTime? startDate = DateTime.Today;
+    private DateTime? endDate = DateTime.Today.AddDays(4);
+    private bool isLoading = false;
+    private string errorMessage = string.Empty;
+
+    private async Task FetchTrend()
+    {
+        errorMessage = "";
+        isLoading = true;
+
+        try
+        {
+            var apiKey = Configuration["WeatherApi:Key"];
+            var url = $"https://api.openweathermap.org/data/2.5/forecast?q={city}&appid={apiKey}&units=metric";
+            var http = new HttpClient();
+            var response = await http.GetFromJsonAsync<ForecastResponse>(url);
+
+            if (response == null || response.List == null)
+            {
+                errorMessage = "No data found.";
+                return;
+            }
+
+            var grouped = response.List
+                .Select(item => new
+                {
+                    Date = DateTime.Parse(item.Dt_txt).Date,
+                    Rain = item.Rain?.ThreeH ?? 0,
+                    Humidity = item.Main.Humidity
+                })
+                .Where(d => d.Date >= startDate && d.Date <= endDate)
+                .GroupBy(d => d.Date)
+                .Select(g => new
+                {
+                    Date = g.Key.ToString("yyyy-MM-dd"),
+                    Rain = g.Sum(x => x.Rain),
+                    Humidity = g.Average(x => x.Humidity)
+                })
+                .ToList();
+
+            var labels = grouped.Select(g => g.Date).ToList();
+            var rainData = grouped.Select(g => g.Rain).ToList();
+            var humidityData = grouped.Select(g => g.Humidity).ToList();
+
+            await JS.InvokeVoidAsync("fetchAndPlotRainHumidity", city, labels, rainData, humidityData);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to load data. Please check city name.";
+            Console.WriteLine(ex);
+        }
+
+        isLoading = false;
+    }
+
+    public class ForecastResponse
+    {
+        public List<ForecastItem> List { get; set; } = new();
+    }
+
+    public class ForecastItem
+    {
+        public MainData Main { get; set; } = new();
+        public RainData? Rain { get; set; }
+        public string Dt_txt { get; set; } = "";
+    }
+
+    public class MainData
+    {
+        public double Temp { get; set; }
+        public double Humidity { get; set; }
+    }
+
+    public class RainData
+    {
+        [System.Text.Json.Serialization.JsonPropertyName("3h")]
+        public double? ThreeH { get; set; }
+    }
+}
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    let rainChartInstance = null;
+
+    async function fetchAndPlotRainHumidity(city, labels, rainfall, humidity, chartType = 'bar') {
+        const ctx = document.getElementById("rainChart").getContext("2d");
+
+        if (rainChartInstance) {
+            rainChartInstance.destroy();
+        }
+
+        rainChartInstance = new Chart(ctx, {
+            type: chartType,
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Rainfall (mm)',
+                        data: rainfall,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y',
+                    },
+                    {
+                        label: 'Humidity (%)',
+                        data: humidity,
+                        backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        yAxisID: 'y1',
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        position: 'left',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Rainfall (mm)'
+                        }
+                    },
+                    y1: {
+                        position: 'right',
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Humidity (%)'
+                        },
+                        grid: {
+                            drawOnChartArea: false
+                        }
+                    }
+                }
+            }
+        });
+    }
+</script>

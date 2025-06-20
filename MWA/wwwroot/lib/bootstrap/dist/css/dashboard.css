@@ -337,15 +337,16 @@ body.dark-mode {
 
 
 .compare-cities-link {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-    font-weight: 500;
-    padding: 0.4rem 0.75rem;
-    border-radius: 10px;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
+    padding: 10px 20px;
+    margin: 10px auto;
     background: rgb(173, 33, 33);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    border-radius: 10px;
+    text-decoration: none;
     transition: background 0.3s ease;
 }
 
@@ -368,5 +369,23 @@ body.dark-mode {
 }
 
 .dashboard-link:hover {
+    background: rgb(255, 44, 44);
+}
+
+.rainfall-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    margin: 10px auto;
+    background: rgb(173, 33, 33);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.rainfall-link:hover {
     background: rgb(255, 44, 44);
 }

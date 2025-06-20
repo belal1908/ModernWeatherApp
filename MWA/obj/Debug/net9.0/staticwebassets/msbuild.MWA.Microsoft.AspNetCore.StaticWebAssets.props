@@ -912,8 +912,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>8ecugyru80</Fingerprint>
-      <Integrity>QKLjmuUyohNIdsN5uE+Seeznwoc6XyLlgL+8Vw8ZsNs=</Integrity>
+      <Fingerprint>qubknlqbjf</Fingerprint>
+      <Integrity>AsTOSfsEJAoWss7Vchc3MtOVGGAW+5uZh3ZYaYgqQaw=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\trend.css'))</OriginalItemSpec>
