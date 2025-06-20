@@ -15,8 +15,8 @@
 @inject Supabase.Client supabase
 @using Supabase.Gotrue;
 
-<button class="mode-toggle" @onclick="ToggleMode">
-    <img src="images/contrast.png">
+<button class="mode-toggle" onclick="toggleDarkMode()">
+    <img src="images/contrast.png" alt="Toggle Theme" />
 </button>
 
 <h2 class="dashboard-title">Your Favorite Cities</h2>
@@ -31,6 +31,10 @@
 
 <NavLink class="rainfall-link" href="/rainfall-pattern">
 <i class="bi bi-rainfall"></i>Rainfall Pattern
+</NavLink>
+
+<NavLink class="monthlychart-link" href="/monthly-stats">
+<i class="bi bi-monthlychart"></i>Monthly Chart
 </NavLink>
 
 <h3 class="alert-settings-title">⚙️ Custom Alert Settings</h3>

@@ -51,6 +51,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2dJbi5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/belal/Desktop/ModernWeatherApp/MWA/Components/Pages/MonthlyStats.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Nb250aGx5U3RhdHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/belal/Desktop/ModernWeatherApp/MWA/Components/Pages/RainfallPattern.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9SYWluZmFsbFBhdHRlcm4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

@@ -11,6 +11,10 @@
 
 <h2 class="text-center text-2xl font-bold mt-6">Weather Comparison Between Cities</h2>
 
+<button class="mode-toggle" onclick="toggleDarkMode()">
+    <img src="images/contrast.png" alt="Toggle Theme" />
+</button>
+
 <div class="compare-container">
     <div class="city-inputs">
         <input @bind="city1" placeholder="Enter First City" class="compare-input" />
@@ -122,4 +126,17 @@
             };
         }
     };
+
+function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    // Apply saved mode on load
+    window.onload = () => {
+        if (localStorage.getItem('mode') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    };
+
 </script>
