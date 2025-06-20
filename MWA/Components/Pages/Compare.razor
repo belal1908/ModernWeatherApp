@@ -1,0 +1,124 @@
+@page "/compare"
+@attribute [StreamRendering]
+@rendermode InteractiveServer
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+@using MWA.Services
+@inject UserStateService UserSessionService
+
+<PageTitle>Compare Cities</PageTitle>
+
+<h2 class="text-center text-2xl font-bold mt-6">Weather Comparison Between Cities</h2>
+
+<div class="compare-container">
+    <div class="city-inputs">
+        <input @bind="city1" placeholder="Enter First City" class="compare-input" />
+        <input @bind="city2" placeholder="Enter Second City" class="compare-input" />
+        <button @onclick="CompareCities" class="compare-button">Compare</button>
+    </div>
+
+    @if (isLoading)
+    {
+        <p class="text-center mt-4">Loading...</p>
+    }
+    @if (!string.IsNullOrWhiteSpace(errorMessage))
+    {
+        <p class="text-center text-red-500">@errorMessage</p>
+    }
+    @if (weatherData1 != null && weatherData2 != null)
+    {
+        <div class="comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>@city1</th>
+                        <th>@city2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Temperature (°C)</td>
+                        <td>@weatherData1.Temp</td>
+                        <td>@weatherData2.Temp</td>
+                    </tr>
+                    <tr>
+                        <td>Humidity (%)</td>
+                        <td>@weatherData1.Humidity</td>
+                        <td>@weatherData2.Humidity</td>
+                    </tr>
+                    <tr>
+                        <td>Wind Speed (km/h)</td>
+                        <td>@weatherData1.WindSpeed</td>
+                        <td>@weatherData2.WindSpeed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@code {
+    private string city1 = string.Empty;
+    private string city2 = string.Empty;
+    private bool isLoading = false;
+    private string errorMessage = string.Empty;
+
+    private WeatherResult? weatherData1;
+    private WeatherResult? weatherData2;
+
+    private async Task CompareCities()
+    {
+        if (string.IsNullOrWhiteSpace(city1) || string.IsNullOrWhiteSpace(city2))
+        {
+            errorMessage = "Please enter both cities.";
+            return;
+        }
+
+        isLoading = true;
+        errorMessage = string.Empty;
+
+        try
+        {
+            weatherData1 = await JS.InvokeAsync<WeatherResult>("fetchWeatherData", city1);
+            weatherData2 = await JS.InvokeAsync<WeatherResult>("fetchWeatherData", city2);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "Failed to fetch data. Please check city names.";
+            Console.WriteLine(ex);
+        }
+
+        isLoading = false;
+    }
+
+    public class WeatherResult
+    {
+        public double Temp { get; set; }
+        public double Humidity { get; set; }
+        public double WindSpeed { get; set; }
+    }
+}
+
+<script>
+    window.fetchWeatherData = async function (city) {
+        try {
+            const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=d8cab8bea5e32d2b21acf2fb9419eebf`);
+            if (!response.ok) throw new Error("City not found");
+
+            const data = await response.json();
+            return {
+                temp: data.main.temp,
+                humidity: data.main.humidity,
+                windSpeed: data.wind.speed
+            };
+        } catch (error) {
+            console.error("Fetch error:", error);
+            return {
+                temp: 0,
+                humidity: 0,
+                windSpeed: 0
+            };
+        }
+    };
+</script>

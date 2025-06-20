@@ -2,7 +2,7 @@
   "Files": [
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/obj/Debug/net9.0/scopedcss/projectbundle/MWA.bundle.scp.css",
-      "PackagePath": "staticwebassets/MWA.mwv70ooizg.bundle.scp.css"
+      "PackagePath": "staticwebassets/MWA.4k2v3tcpp3.bundle.scp.css"
     },
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/app.css",
@@ -187,6 +187,10 @@
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/compare.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/compare.css"
     },
     {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/dashboard.css",
