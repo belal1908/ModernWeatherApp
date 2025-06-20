@@ -564,17 +564,17 @@
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"n4nw0c4rm8"},{"Name":"integrity","Value":"sha256-F\u002B2JA/4M7zQ7/HdNcw5Na4ih3Qy9zmW28j/SSchtD1A="},{"Name":"label","Value":"_content/MWA/lib/bootstrap/dist/css/compare.css"}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2423"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022F\u002B2JA/4M7zQ7/HdNcw5Na4ih3Qy9zmW28j/SSchtD1A=\u0022"},{"Name":"Last-Modified","Value":"Fri, 20 Jun 2025 13:17:53 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/dashboard.4ycog3m17e.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\dashboard.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"4ycog3m17e"},{"Name":"integrity","Value":"sha256-jPPzKVKg/BUNEMbv9A7DVT2qCnwofBX1J3KNrwtEipg="},{"Name":"label","Value":"_content/MWA/lib/bootstrap/dist/css/dashboard.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6864"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022jPPzKVKg/BUNEMbv9A7DVT2qCnwofBX1J3KNrwtEipg=\u0022"},{"Name":"Last-Modified","Value":"Fri, 20 Jun 2025 13:40:07 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/dashboard.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\dashboard.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-FBWB9TOpoIUhMVaP8CnpMhiS522RooRWjGhZ3pmZFxM="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"7935"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022FBWB9TOpoIUhMVaP8CnpMhiS522RooRWjGhZ3pmZFxM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 20 Jun 2025 13:30:09 GMT"}]]]></ResponseHeaders>
-    </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/dashboard.g985w7csrg.css">
-      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\dashboard.css'))</AssetFile>
-      <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"g985w7csrg"},{"Name":"integrity","Value":"sha256-FBWB9TOpoIUhMVaP8CnpMhiS522RooRWjGhZ3pmZFxM="},{"Name":"label","Value":"_content/MWA/lib/bootstrap/dist/css/dashboard.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"7935"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022FBWB9TOpoIUhMVaP8CnpMhiS522RooRWjGhZ3pmZFxM=\u0022"},{"Name":"Last-Modified","Value":"Fri, 20 Jun 2025 13:30:09 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-jPPzKVKg/BUNEMbv9A7DVT2qCnwofBX1J3KNrwtEipg="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6864"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022jPPzKVKg/BUNEMbv9A7DVT2qCnwofBX1J3KNrwtEipg=\u0022"},{"Name":"Last-Modified","Value":"Fri, 20 Jun 2025 13:40:07 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/MWA/lib/bootstrap/dist/css/login.0ocbnz42xz.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\login.css'))</AssetFile>

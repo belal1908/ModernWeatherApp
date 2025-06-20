@@ -858,8 +858,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>g985w7csrg</Fingerprint>
-      <Integrity>FBWB9TOpoIUhMVaP8CnpMhiS522RooRWjGhZ3pmZFxM=</Integrity>
+      <Fingerprint>4ycog3m17e</Fingerprint>
+      <Integrity>jPPzKVKg/BUNEMbv9A7DVT2qCnwofBX1J3KNrwtEipg=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\bootstrap\dist\css\dashboard.css'))</OriginalItemSpec>
