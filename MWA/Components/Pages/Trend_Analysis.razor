@@ -8,6 +8,10 @@
 
 <h2 class="trend-heading">📈 Temperature Trend Analysis</h2>
 
+<button class="mode-toggle" onclick="toggleDarkMode()">
+    <img src="images/contrast.png" alt="Toggle Theme" />
+</button>
+
 <div class="trend-container">
     <div class="trend-input-group">
         <input @bind="city" placeholder="Enter City" class="trend-input" />
@@ -130,4 +134,17 @@
         }
     });
 }
+
+function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        localStorage.setItem('mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+    }
+
+    // Apply saved mode on load
+    window.onload = () => {
+        if (localStorage.getItem('mode') === 'dark') {
+            document.body.classList.add('dark-mode');
+        }
+    };
+
 </script>
