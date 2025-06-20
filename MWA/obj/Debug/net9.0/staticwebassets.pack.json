@@ -205,6 +205,10 @@
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/signup.css"
     },
     {
+      "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/trend.css",
+      "PackagePath": "staticwebassets/lib/bootstrap/dist/css/trend.css"
+    },
+    {
       "Id": "/Users/belal/Desktop/ModernWeatherApp/MWA/wwwroot/lib/bootstrap/dist/css/weather.css",
       "PackagePath": "staticwebassets/lib/bootstrap/dist/css/weather.css"
     },

@@ -1,0 +1,92 @@
+.trend-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 30px 40px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+.trend-heading {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.trend-input-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.trend-input {
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 240px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.trend-input:focus {
+    border-color: #f45917;
+    box-shadow: 0 0 0 2px rgba(255, 95, 26, 0.332);
+}
+
+.trend-button {
+    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.trend-button:hover {
+    background-color: #c93df0;
+}
+
+.trend-chart-container {
+    margin-top: 10px;
+}
+
+.loading-text,
+.error-text {
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.loading-text {
+    color: #555;
+}
+
+.error-text {
+    color: #e63946;
+    font-weight: 500;
+}
+
+.trend-date {
+    padding: 10px 16px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: 1px solid #969696;
+    width: 220px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.trend-date:focus {
+    border-color: #f45917;
+    box-shadow: 0 0 0 2px rgba(255, 95, 26, 0.332);
+}
