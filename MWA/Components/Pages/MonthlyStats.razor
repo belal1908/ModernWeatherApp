@@ -1,4 +1,5 @@
 @page "/monthly-stats"
+@using MudBlazor
 @attribute [StreamRendering]
 @rendermode InteractiveServer
 @inject IJSRuntime JS
@@ -6,9 +7,9 @@
 
 <PageTitle>Monthly Weather Statistics</PageTitle>
 
-<button class="mode-toggle" onclick="toggleDarkMode()">
+<MudButton Class="mode-toggle" OnClick="ToggleDarkMode">
     <img src="images/contrast.png" alt="Toggle Theme" />
-</button>
+</MudButton>
 
 <h2 class="text-center text-2xl font-bold mt-6">📊 Monthly Weather Statistics</h2>
 
@@ -21,7 +22,10 @@
                 <option value="@month.Value">@month.Key</option>
             }
         </select>
-        <button class="trend-button" @onclick="FetchMonthlyStats">Analyze</button>
+
+        <MudButton OnClick="FetchMonthlyStats" Variant="Variant.Filled" Color="Color.Primary" Class="trend-button">
+            Analyze
+        </MudButton>
     </div>
 
     @if (isLoading)
@@ -34,88 +38,15 @@
         <p class="error-text">@errorMessage</p>
     }
 
-    <div class="trend-chart-container">
-        <canvas id="monthlyChart" width="800" height="400" class="mt-4"></canvas>
-    </div>
+    @if (chartVisible)
+    {
+        <div class="trend-chart-wrapper">
+            <div class="chart-inner">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+        </div>
+    }
 </div>
-
-<style>
-/* 🌙 Dark Mode Styles */
-.dark-mode .trend-container {
-    background-color: #1e1e1e;
-    color: #e0e0e0;
-    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
-}
-
-.dark-mode .trend-input,
-.dark-mode .trend-date {
-    background-color: #2d2d2d;
-    color: #e0e0e0;
-    border: 1px solid #444;
-}
-
-.dark-mode .trend-input:focus,
-.dark-mode .trend-date:focus {
-    border-color: #ff8800;
-    box-shadow: 0 0 0 2px rgba(255, 136, 0, 0.3);
-}
-
-.dark-mode .trend-button {
-    background: linear-gradient(90deg, #ff6a00, #ee0979);
-    color: white;
-}
-
-.dark-mode .loading-text {
-    color: #ccc;
-}
-
-.dark-mode .error-text {
-    color: #ff6b6b;
-}
-
-.dark-mode .trend-heading {
-    color: #f0f0f0;
-}
-
-/* 📊 Make Chart Text White in Dark Mode */
-.dark-mode #monthlyChart {
-    background-color: transparent;
-}
-
-/* 🌘 Chart.js axis/grid color override (optional if using Chart.js dark theme settings) */
-.dark-mode .chartjs-render-monitor {
-    color: #e0e0e0 !important;
-}
-
-/* 🌓 Theme Toggle Button Styling */
-.theme-toggle {
-    position: fixed;
-    top: 80px;
-    right: 90px;
-    border: 0;
-    outline: 0;
-    background: #f4f4f4;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    transition: background-color 0.3s ease;
-}
-
-.theme-toggle img {
-    width: 24px;
-}
-
-/* Adjust in dark mode */
-.dark-mode .theme-toggle {
-    background-color: #444;
-}
-</style>
-
 
 @code {
     private string city = "Delhi";
@@ -123,6 +54,7 @@
     private bool isLoading = false;
     private string errorMessage = "";
     private List<DailyStat> monthlyStats = new();
+    private bool chartVisible = false;
 
     private Dictionary<string, string> months = new()
     {
@@ -136,19 +68,46 @@
     {
         errorMessage = "";
         isLoading = true;
+        chartVisible = false;
+        StateHasChanged();
 
         try
         {
             monthlyStats = await GetMonthlyDataAsync(city, selectedMonth);
+
+            if (monthlyStats.Count == 0)
+            {
+                errorMessage = "No data found for this month.";
+                isLoading = false;
+                return;
+            }
+
+            chartVisible = true;
+            isLoading = false;
+            StateHasChanged();
+
+            await Task.Delay(100);
             await JS.InvokeVoidAsync("plotMonthlyWeatherStats", city, monthlyStats);
         }
         catch (Exception ex)
         {
-            errorMessage = "Something went wrong while fetching statistics.";
-            Console.WriteLine(ex);
+            errorMessage = "Failed to fetch data.";
+            Console.WriteLine(ex.Message);
+            isLoading = false;
         }
+    }
 
-        isLoading = false;
+    private async Task ToggleDarkMode()
+    {
+        await JS.InvokeVoidAsync("toggleDarkMode");
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("applySavedMode");
+        }
     }
 
     private async Task<(double lat, double lon)> GetCoordinatesAsync(string city)
@@ -172,7 +131,7 @@
         var forecast = await http.GetFromJsonAsync<ForecastResponse>(url);
         if (forecast == null || forecast.List.Count == 0) throw new Exception("No forecast data found.");
 
-        var stats = forecast.List
+        return forecast.List
             .Where(f => DateTime.Parse(f.Dt_txt).ToString("MM") == month)
             .GroupBy(f => DateTime.Parse(f.Dt_txt).Date)
             .Select(g => new DailyStat
@@ -183,8 +142,6 @@
                 TotalRain = Math.Round(g.Sum(x => x.Rain?.ThreeH ?? 0), 2)
             })
             .ToList();
-
-        return stats;
     }
 
     public class GeoResult
@@ -201,8 +158,8 @@
     public class ForecastItem
     {
         public MainInfo Main { get; set; } = new();
-        public RainInfo Rain { get; set; }
-        public string Dt_txt { get; set; }
+        public RainInfo? Rain { get; set; }
+        public string Dt_txt { get; set; } = "";
     }
 
     public class MainInfo
@@ -214,45 +171,70 @@
     public class RainInfo
     {
         [System.Text.Json.Serialization.JsonPropertyName("3h")]
-        public double ThreeH { get; set; }
+        public double? ThreeH { get; set; }
     }
 
     public class DailyStat
     {
-        public string Date { get; set; }
+        public string? Date { get; set; }
         public double AvgTemp { get; set; }
         public double AvgHumidity { get; set; }
         public double TotalRain { get; set; }
     }
 }
 
+<style>
+.trend-chart-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding: 1rem;
+}
+
+.chart-inner {
+    position: center;
+    width: 100%;
+    height: 500px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.dark-mode .chart-inner {
+    background-color: #121212;
+}
+
+canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+</style>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     let monthlyChartInstance = null;
 
     async function plotMonthlyWeatherStats(city, data) {
-        const ctx = document.getElementById("monthlyChart").getContext("2d");
+        await new Promise(resolve => setTimeout(resolve, 100));
+        const canvas = document.getElementById("monthlyChart");
+        if (!canvas) return;
 
-        // Destroy old chart if it exists
-        if (monthlyChartInstance) {
-            monthlyChartInstance.destroy();
-        }
+        const ctx = canvas.getContext("2d");
 
-        // Extract data
-        const labels = data.map(d => d.date);
-        const temperatures = data.map(d => d.avgTemp);
-        const humidity = data.map(d => d.avgHumidity);
-        const rainfall = data.map(d => d.totalRain);
+        if (monthlyChartInstance) monthlyChartInstance.destroy();
 
         monthlyChartInstance = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels,
+                labels: data.map(d => d.date),
                 datasets: [
                     {
                         label: 'Avg Temperature (°C)',
-                        data: temperatures,
+                        data: data.map(d => d.avgTemp),
                         borderColor: 'rgba(255, 99, 132, 1)',
                         backgroundColor: 'rgba(255, 99, 132, 0.3)',
                         yAxisID: 'y',
@@ -261,14 +243,14 @@
                     },
                     {
                         label: 'Avg Humidity (%)',
-                        data: humidity,
+                        data: data.map(d => d.avgHumidity),
                         borderColor: 'rgba(54, 162, 235, 1)',
                         backgroundColor: 'rgba(54, 162, 235, 0.3)',
                         yAxisID: 'y1'
                     },
                     {
                         label: 'Total Rainfall (mm)',
-                        data: rainfall,
+                        data: data.map(d => d.totalRain),
                         borderColor: 'rgba(75, 192, 192, 1)',
                         backgroundColor: 'rgba(75, 192, 192, 0.4)',
                         yAxisID: 'y2'
@@ -277,9 +259,10 @@
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 interaction: {
                     mode: 'index',
-                    intersect: false,
+                    intersect: false
                 },
                 stacked: false,
                 plugins: {
@@ -303,9 +286,7 @@
                     y1: {
                         type: 'linear',
                         position: 'right',
-                        grid: {
-                            drawOnChartArea: false
-                        },
+                        grid: { drawOnChartArea: false },
                         title: {
                             display: true,
                             text: 'Humidity (%)'
@@ -315,9 +296,7 @@
                         type: 'linear',
                         position: 'right',
                         offset: true,
-                        grid: {
-                            drawOnChartArea: false
-                        },
+                        grid: { drawOnChartArea: false },
                         title: {
                             display: true,
                             text: 'Rainfall (mm)'
@@ -328,16 +307,14 @@
         });
     }
 
-function toggleDarkMode() {
+    function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         localStorage.setItem('mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     }
 
-    // Apply saved mode on load
-    window.onload = () => {
+    function applySavedMode() {
         if (localStorage.getItem('mode') === 'dark') {
             document.body.classList.add('dark-mode');
         }
-    };
-
+    }
 </script>

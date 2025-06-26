@@ -3,21 +3,24 @@
 @rendermode InteractiveServer
 @inject IConfiguration Configuration
 @inject IJSRuntime JS
+@using MudBlazor
 
 <PageTitle>Temperature Trends</PageTitle>
 
 <h2 class="trend-heading">📈 Temperature Trend Analysis</h2>
 
-<button class="mode-toggle" onclick="toggleDarkMode()">
+<MudButton Class="theme-toggle" OnClick="ToggleDarkMode">
     <img src="images/contrast.png" alt="Toggle Theme" />
-</button>
+</MudButton>
 
 <div class="trend-container">
     <div class="trend-input-group">
         <input @bind="city" placeholder="Enter City" class="trend-input" />
         <input type="date" @bind="startDate" class="trend-date" />
         <input type="date" @bind="endDate" class="trend-date" />
-        <button @onclick="FetchTrend" class="trend-button">Get Trend</button>
+        <MudButton OnClick="FetchTrend" Variant="Variant.Filled" Color="Color.Primary" Class="trend-button">
+            Get Trend
+        </MudButton>
     </div>
 
     @if (isLoading)
@@ -58,93 +61,93 @@
 
         isLoading = false;
     }
+
+    private async Task ToggleDarkMode()
+    {
+        await JS.InvokeVoidAsync("toggleDarkMode");
+    }
 }
 
 <!-- Include this in the same file or your layout -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     async function fetchAndPlotTemperatureTrend(city) {
-    const canvas = document.getElementById("tempChart");
-    if (!canvas) return;
+        const canvas = document.getElementById("tempChart");
+        if (!canvas) return;
 
-    const ctx = canvas.getContext("2d");
+        const ctx = canvas.getContext("2d");
 
-    // Get city coordinates
-    const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=d8cab8bea5e32d2b21acf2fb9419eebf`);
-    const geoData = await geoRes.json();
-    if (!geoData[0]) {
-        alert("City not found");
-        return;
-    }
-
-    const lat = geoData[0].lat;
-    const lon = geoData[0].lon;
-
-    // Fetch 5-day forecast data
-    const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=d8cab8bea5e32d2b21acf2fb9419eebf`);
-    const forecastData = await forecastRes.json();
-
-    const dateGroups = {};
-
-    forecastData.list.forEach(item => {
-        const date = item.dt_txt.split(' ')[0];
-        if (!dateGroups[date]) {
-            dateGroups[date] = [];
+        const geoRes = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=1&appid=d8cab8bea5e32d2b21acf2fb9419eebf`);
+        const geoData = await geoRes.json();
+        if (!geoData[0]) {
+            alert("City not found");
+            return;
         }
-        dateGroups[date].push(item.main.temp);
-    });
 
-    const labels = Object.keys(dateGroups);
-    const temps = labels.map(date => {
-        const temps = dateGroups[date];
-        return temps.reduce((a, b) => a + b, 0) / temps.length;
-    });
+        const lat = geoData[0].lat;
+        const lon = geoData[0].lon;
 
-    if (window.chartInstance) window.chartInstance.destroy();
+        const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=d8cab8bea5e32d2b21acf2fb9419eebf`);
+        const forecastData = await forecastRes.json();
 
-    window.chartInstance = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels,
-            datasets: [{
-                label: `Temperature in ${city}`,
-                data: temps,
-                borderColor: 'rgba(54, 162, 235, 1)',
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                fill: true,
-                tension: 0.4
-            }]
-        },
-        options: {
-            responsive: true,
-            scales: {
-                y: {
-                    title: {
-                        display: true,
-                        text: 'Temperature (°C)'
-                    }
-                },
-                x: {
-                    title: {
-                        display: true,
-                        text: 'Date'
+        const dateGroups = {};
+        forecastData.list.forEach(item => {
+            const date = item.dt_txt.split(' ')[0];
+            if (!dateGroups[date]) {
+                dateGroups[date] = [];
+            }
+            dateGroups[date].push(item.main.temp);
+        });
+
+        const labels = Object.keys(dateGroups);
+        const temps = labels.map(date => {
+            const temps = dateGroups[date];
+            return temps.reduce((a, b) => a + b, 0) / temps.length;
+        });
+
+        if (window.chartInstance) window.chartInstance.destroy();
+
+        window.chartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels,
+                datasets: [{
+                    label: `Temperature in ${city}`,
+                    data: temps,
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Temperature (°C)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        }
                     }
                 }
             }
-        }
-    });
-}
+        });
+    }
 
-function toggleDarkMode() {
+    function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
         localStorage.setItem('mode', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
     }
 
-    // Apply saved mode on load
     window.onload = () => {
         if (localStorage.getItem('mode') === 'dark') {
             document.body.classList.add('dark-mode');
         }
     };
-
 </script>

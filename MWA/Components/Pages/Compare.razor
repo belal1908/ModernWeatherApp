@@ -6,60 +6,66 @@
 @using MWA.Services
 @inject UserStateService UserSessionService
 @using Microsoft.AspNetCore.Components
+@using MudBlazor
 
 <PageTitle>Compare Cities</PageTitle>
 
-<h2 class="text-center text-2xl font-bold mt-6">Weather Comparison Between Cities</h2>
+<h2 class="text-center text-2xl font-bold mt-6">🌆 Weather Comparison Between Cities</h2>
 
-<button class="mode-toggle" onclick="toggleDarkMode()">
+<MudButton Class="mode-toggle" OnClick="ToggleDarkMode">
     <img src="images/contrast.png" alt="Toggle Theme" />
-</button>
+</MudButton>
 
 <div class="compare-container">
     <div class="city-inputs">
         <input @bind="city1" placeholder="Enter First City" class="compare-input" />
         <input @bind="city2" placeholder="Enter Second City" class="compare-input" />
-        <button @onclick="CompareCities" class="compare-button">Compare</button>
+        <MudButton OnClick="CompareCities" Variant="MudBlazor.Variant.Filled" Color="MudBlazor.Color.Primary" Class="compare-button">
+            Compare
+        </MudButton>
     </div>
 
     @if (isLoading)
     {
-        <p class="text-center mt-4">Loading...</p>
+        <MudText Class="text-center mt-4">Loading...</MudText>
     }
+
     @if (!string.IsNullOrWhiteSpace(errorMessage))
     {
-        <p class="text-center text-red-500">@errorMessage</p>
+        <MudText Class="text-center text-red-500" Color="MudBlazor.Color.Error">@errorMessage</MudText>
     }
-    @if (weatherData1 != null && weatherData2 != null)
-    {
-        <div class="comparison-table">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Metric</th>
-                        <th>@city1</th>
-                        <th>@city2</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Temperature (°C)</td>
-                        <td>@weatherData1.Temp</td>
-                        <td>@weatherData2.Temp</td>
-                    </tr>
-                    <tr>
-                        <td>Humidity (%)</td>
-                        <td>@weatherData1.Humidity</td>
-                        <td>@weatherData2.Humidity</td>
-                    </tr>
-                    <tr>
-                        <td>Wind Speed (km/h)</td>
-                        <td>@weatherData1.WindSpeed</td>
-                        <td>@weatherData2.WindSpeed</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+
+   @if (weatherData1 != null && weatherData2 != null)
+{
+    <div class="comparison-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>@city1</th>
+                    <th>@city2</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Temperature (°C)</td>
+                    <td>@weatherData1.Temp</td>
+                    <td>@weatherData2.Temp</td>
+                </tr>
+                <tr>
+                    <td>Humidity (%)</td>
+                    <td>@weatherData1.Humidity</td>
+                    <td>@weatherData2.Humidity</td>
+                </tr>
+                <tr>
+                    <td>Wind Speed (km/h)</td>
+                    <td>@weatherData1.WindSpeed</td>
+                    <td>@weatherData2.WindSpeed</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     }
 </div>
 
@@ -95,6 +101,11 @@
         }
 
         isLoading = false;
+    }
+
+    private async Task ToggleDarkMode()
+    {
+        await JS.InvokeVoidAsync("toggleDarkMode");
     }
 
     public class WeatherResult

@@ -132,8 +132,8 @@
 
 .theme-toggle {
     position: fixed;
-    top: 80px;
-    right: 90px; /* adjust left of logout button */
+    top: 25px;
+    right: 18px; /* adjust left of logout button */
     border: 0;
     outline: 0;
     background: #f4f4f4;
@@ -149,5 +149,5 @@
 }
 
 .theme-toggle img {
-    width: 24px;
+    width: 25px;
 }
